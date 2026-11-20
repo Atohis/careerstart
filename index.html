@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>CareerStart пилот</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#F6F3EC; --surface:#FFFFFF; --ink:#1D1B17; --muted:#6B675E; --line:#E4DFD3;
+  --accent:#0F5E5A; --accent-ink:#FFFFFF; --amber:#B7791F; --amber-bg:#FBF1DE; --ok:#2F7A4B; --ok-bg:#E3F2E8;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161513; --surface:#1F1E1B; --ink:#EFEBE2; --muted:#A09B90; --line:#34322C;
+    --accent:#5FB8B2; --accent-ink:#0E1F1E; --amber:#E0A94E; --amber-bg:#3A2E18; --ok:#7CC796; --ok-bg:#1F3326;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#161513; --surface:#1F1E1B; --ink:#EFEBE2; --muted:#A09B90; --line:#34322C;
+  --accent:#5FB8B2; --accent-ink:#0E1F1E; --amber:#E0A94E; --amber-bg:#3A2E18; --ok:#7CC796; --ok-bg:#1F3326;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 Manrope,system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:700;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,44px)}
+h2{font-size:24px;margin:28px 0 10px}
+h3{font-size:18px;margin-bottom:6px}
+.lead{color:var(--muted);margin:8px 0 0;max-width:60ch}
+.small{font-size:13px;color:var(--muted)}
+.banner{background:var(--amber-bg);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:10px;padding:12px 14px;margin:18px 0;font-size:14px}
+.banner strong{color:var(--amber)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px}
+.tab{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 14px;border-radius:999px;font:600 14px Manrope,sans-serif;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+[hidden]{display:none!important}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:13px;cursor:pointer;background:var(--bg);color:var(--ink)}
+.chip:has(input:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+.days{display:flex;gap:6px;flex-wrap:wrap}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));margin-top:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:3px 8px;border-radius:999px;background:var(--ok-bg);color:var(--ok);width:max-content}
+.badge.demo{background:var(--amber-bg);color:var(--amber)}
+.pay{font:600 19px Fraunces,Georgia,serif;color:var(--accent)}
+.duties{margin:0;font-size:14px}
+.card .btn{margin-top:auto}
+.btn{display:inline-block;text-align:center;text-decoration:none;appearance:none;border:0;background:var(--accent);color:var(--accent-ink);font:600 15px Manrope,sans-serif;padding:11px 16px;border-radius:10px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn[aria-disabled="true"]{opacity:.5;pointer-events:none}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px}
+ul{margin:0;padding-left:20px}
+li{margin-bottom:6px}
+.steps{display:grid;gap:12px;margin-top:10px}
+.step{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start}
+.step .n{width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700}
+.empty{border:1px dashed var(--line);border-radius:14px;padding:20px;color:var(--muted);text-align:center;margin-top:14px}
+.note{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>CareerStart</h1>
+    <p class="lead">Стажировки и подработка для студентов, которые совмещают работу с учёбой. Студенты видят условия до отклика, работодатели находят студентов, которым могут платить.</p>
+  </header>
+
+  <div class="banner" role="note">
+    <strong>Пилот.</strong> Вакансии проверяет и публикует команда вручную. Отклики и заявки принимают формы, данные видит только команда. Оплата тестовая: деньги не списываются. Метка «ДЕМО» означает выдуманную вакансию для теста.
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t-students" aria-selected="true" aria-controls="p-students">Вакансии для студентов</button>
+    <button class="tab" role="tab" id="t-employers" aria-selected="false" aria-controls="p-employers">Работодателям</button>
+  </div>
+
+  <!-- Студенты -->
+  <section id="p-students" role="tabpanel" aria-labelledby="t-students">
+    <div class="filters" aria-label="Фильтры">
+      <label class="chip"><input type="checkbox" id="f-noexp"> Без опыта</label>
+      <span class="small">Свободные дни:</span>
+      <div class="days" id="f-days"></div>
+      <label class="chip">Оплата от
+        <select id="f-pay" style="width:auto;padding:4px 6px;border-radius:8px;background:var(--bg);color:var(--ink);border:1px solid var(--line)">
+          <option value="0">любая</option>
+          <option value="2000">2 000 ₸</option>
+          <option value="3000">3 000 ₸</option>
+          <option value="5000">5 000 ₸</option>
+        </select>
+      </label>
+    </div>
+    <div id="catalog" class="grid" aria-live="polite"></div>
+    <div id="catalog-empty" class="empty" hidden></div>
+    <p class="note">Отклик откроет форму. Команда свяжется с вами, когда работодатель ответит.</p>
+  </section>
+
+  <!-- Работодатели -->
+  <section id="p-employers" role="tabpanel" aria-labelledby="t-employers" hidden>
+    <h2>Разместить вакансию</h2>
+    <p class="lead">Размещение одной вакансии — 10 000 ₸ (пилотная цена). Вы заполняете заявку, команда проверяет условия и публикует вакансию вручную.</p>
+
+    <div class="steps" style="margin-top:18px">
+      <div class="step"><div class="n">1</div><div><h3>Заявка</h3><p class="small">Компания, условия, оплата, график, обязанности.</p></div></div>
+      <div class="step"><div class="n">2</div><div><h3>Оплата</h3><p class="small">Оплата тестовая, деньги не списываются. Ссылка на оплату появится после подключения провайдера.</p></div></div>
+      <div class="step"><div class="n">3</div><div><h3>Публикация</h3><p class="small">Команда проверяет вакансию и публикует её в каталоге.</p></div></div>
+    </div>
+
+    <div class="cta" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+      <a class="btn" id="btn-employer" href="#" target="_blank" rel="noopener" aria-disabled="true">Заполнить заявку</a>
+      <button class="btn ghost" id="btn-pay-test" type="button">Тест оплаты (имитация)</button>
+    </div>
+    <p class="small" id="pay-msg" role="status" style="margin-top:12px"></p>
+    <p class="note">Имитация оплаты ничего не сохраняет и не списывает деньги. Она нужна, чтобы показать шаг оплаты.</p>
+  </section>
+
+  <footer style="margin-top:32px" class="small">Пилот CareerStart в рамках курса «MVP». Данные хранятся только для теста и будут удалены после защиты.</footer>
+</div>
+
+<script>
+// Настройки. Вставьте ссылки на формы Google Forms; пока пусто, кнопки отключены.
+const FORM_RESPONSE_URL = ''; // отклик студента
+const FORM_EMPLOYER_URL = ''; // заявка работодателя
+
+// Вакансии. Демо-записи помечены «ДЕМО». Команда добавляет и удаляет записи после проверки условий.
+const VACANCIES = [
+  { id:'demo-1', demo:true, title:'Помощник в отдел учёта (демо)', company:'Компания «Пример» (демо)', payAmount:3000, payText:'3 000 ₸ за смену', days:['Вт','Чт'], hours:'14:00–18:00', format:'На месте', noExperience:true, duties:'Ведение таблиц, сверка накладных. Пример вакансии для теста.' },
+  { id:'demo-2', demo:true, title:'Стажёр SMM (демо)', company:'Студия «Пример» (демо)', payAmount:2500, payText:'2 500 ₸ за публикацию', days:['Пн','Ср','Пт'], hours:'гибкий график', format:'Удалённо', noExperience:true, duties:'Подготовка постов для соцсетей. Пример вакансии для теста.' },
+  { id:'demo-3', demo:true, title:'Оператор склада (демо)', company:'Магазин «Пример» (демо)', payAmount:5500, payText:'5 500 ₸ за смену', days:['Сб','Вс'], hours:'09:00–15:00', format:'На месте', noExperience:false, duties:'Приёмка и выкладка товара. Пример вакансии для теста.' }
+];
+
+const DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = n => Number(n || 0).toLocaleString('ru-RU') + ' ₸';
+
+document.getElementById('f-days').innerHTML = DAYS.map(d => `<label class="chip"><input type="checkbox" name="fday" value="${d}"> ${d}</label>`).join('');
+
+function setTab(id){
+  document.getElementById('t-students').setAttribute('aria-selected', id==='students'?'true':'false');
+  document.getElementById('t-employers').setAttribute('aria-selected', id==='employers'?'true':'false');
+  $('#p-students').hidden = id !== 'students';
+  $('#p-employers').hidden = id !== 'employers';
+}
+document.getElementById('t-students').onclick = () => setTab('students');
+document.getElementById('t-employers').onclick = () => setTab('employers');
+
+function renderCatalog(){
+  const noExp = $('#f-noexp').checked;
+  const days = [...document.querySelectorAll('input[name="fday"]:checked')].map(i => i.value);
+  const minPay = Number($('#f-pay').value || 0);
+  const list = VACANCIES.filter(v =>
+    (!noExp || v.noExperience) &&
+    (days.length === 0 || v.days.some(d => days.includes(d))) &&
+    v.payAmount >= minPay);
+  const box = $('#catalog'), empty = $('#catalog-empty');
+  if (list.length === 0){
+    box.innerHTML = '';
+    empty.hidden = false;
+    empty.textContent = VACANCIES.length === 0
+      ? 'Пока нет опубликованных вакансий. Команда добавляет их после проверки.'
+      : 'По этим фильтрам вакансий нет. Попробуйте снять часть фильтров.';
+    return;
+  }
+  empty.hidden = true;
+  box.innerHTML = list.map(v => `
+    <article class="card">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${v.demo ? '<span class="badge demo">ДЕМО</span>' : ''}
+        ${v.noExperience ? '<span class="badge">Без опыта</span>' : ''}
+      </div>
+      <h3>${esc(v.title)}</h3>
+      <div class="small">${esc(v.company)} · ${esc(v.format)}</div>
+      <div class="pay">${esc(v.payText)}</div>
+      <div class="small">${esc(v.days.join(', '))} · ${esc(v.hours)}</div>
+      <p class="duties">${esc(v.duties)}</p>
+      ${FORM_RESPONSE_URL
+        ? `<a class="btn" href="${esc(FORM_RESPONSE_URL)}" target="_blank" rel="noopener">Откликнуться</a>`
+        : `<span class="btn" aria-disabled="true">Отклик скоро</span>`}
+    </article>`).join('');
+}
+['#f-noexp','#f-pay'].forEach(s => $(s).addEventListener('change', renderCatalog));
+document.querySelectorAll('input[name="fday"]').forEach(i => i.addEventListener('change', renderCatalog));
+renderCatalog();
+
+// Работодатели
+const emp = $('#btn-employer');
+if (FORM_EMPLOYER_URL){ emp.href = FORM_EMPLOYER_URL; emp.setAttribute('aria-disabled','false'); }
+else { emp.textContent = 'Заявка скоро'; }
+
+$('#btn-pay-test').addEventListener('click', () => {
+  $('#pay-msg').textContent = 'Имитация: «Тестовая оплата пройдена». Деньги не списаны, заявка не сохранена. Для реальной оплаты нужен подключённый провайдер.';
+});
+</script>
+</body>
+</html>
