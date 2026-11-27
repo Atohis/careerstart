@@ -50,13 +50,14 @@ p{margin:0;max-width:60ch}
 .logo b i{font-style:normal;color:var(--hi)}
 
 header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 16px;padding-block:18px}
-nav{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+nav{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
 nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px}
 nav a:hover{color:var(--hi)}
 @media (max-width:720px){nav .hide-sm{display:none}}
 
-.theme-btn{font:700 13px Manrope,sans-serif;color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap}
-.theme-btn:hover{background:var(--hi);color:var(--hi-ink)}
+.pill{font:700 13px Manrope,sans-serif;color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap}
+.pill:hover{background:var(--hi);color:var(--hi-ink)}
+.pill:disabled{opacity:.5;cursor:default}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:3px solid var(--ink);background:var(--accent);color:var(--accent-ink);font:800 15px Manrope,sans-serif;padding:12px 20px;border-radius:14px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
@@ -114,15 +115,35 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .price small{display:block;font:700 16px Manrope,sans-serif;letter-spacing:0;color:var(--muted);margin-top:8px}
 .note{background:var(--hi);color:var(--hi-ink);border:2px solid var(--ink);border-radius:14px;padding:14px 16px;font-size:14px}
 
-/* плавающая кнопка поддержки и окно */
+/* плавающая кнопка поддержки */
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--accent);color:var(--accent-ink);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;cursor:pointer;z-index:40;padding:0;transition:transform .12s ease,box-shadow .12s ease}
 .fab:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
 .fab:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
 .fab svg{width:22px;height:22px}
 .panel{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 56px);width:min(340px,calc(100vw - 32px));background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);z-index:41;padding:18px;display:grid;gap:14px}
-.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.panel-head h3{font-size:18px}
+
+/* окна: вход, профиль, форма */
+.modal{position:fixed;inset:0;background:rgba(4,32,44,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal[hidden]{display:none!important}
+.dlg{background:var(--surface);border:3px solid var(--ink);border-radius:22px;width:min(420px,100%);max-height:86vh;overflow:auto;box-shadow:var(--shadow);display:grid}
+.sheet{background:var(--surface);border:3px solid var(--ink);border-radius:22px;width:min(640px,100%);height:min(86vh,760px);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow)}
+.sheet iframe{border:0;width:100%;flex:1;background:var(--surface)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:3px solid var(--ink)}
+.head h3{font-size:18px}
+.body{padding:18px;display:grid;gap:14px}
 .x{appearance:none;background:transparent;border:0;color:var(--ink);font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
+.tabs{display:flex;gap:8px;padding:14px 18px 0}
+.tab{flex:1;font:800 14px Manrope,sans-serif;color:var(--ink);background:var(--bg);border:2px solid var(--ink);border-radius:12px;padding:9px;cursor:pointer}
+.tab.on{background:var(--hi);color:var(--hi-ink)}
+form.sup{display:grid;gap:14px}
+form.sup label{display:grid;gap:6px;font-weight:700;font-size:14px;min-width:0}
+.field{font:500 16px Manrope,sans-serif;color:var(--ink);background:var(--bg);border:2px solid var(--ink);border-radius:12px;padding:10px 12px;width:100%;min-width:0}
+.field:focus{outline:3px solid var(--hi);outline-offset:1px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:8px;min-width:0}
+legend{font-weight:700;font-size:14px;padding:0;margin-bottom:6px}
+.form-status{font-size:14px;min-height:1.4em;margin:0}
+.form-status.ok{font-weight:700}
+.form-status.err{background:var(--hi);color:var(--hi-ink);border-radius:10px;padding:8px 12px}
 
 details{background:var(--surface);border:3px solid var(--ink);border-radius:18px;padding:18px 22px;box-shadow:4px 4px 0 var(--ink)}
 details + details{margin-top:14px}
@@ -133,13 +154,6 @@ details[open] summary::after{content:"–"}
 details p{margin-top:12px;color:var(--muted)}
 
 footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--muted)}
-
-.modal{position:fixed;inset:0;background:rgba(4,32,44,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
-.modal[hidden]{display:none!important}
-.sheet{background:var(--surface);border:3px solid var(--ink);border-radius:22px;width:min(640px,100%);height:min(86vh,760px);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow)}
-.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:3px solid var(--ink)}
-.sheet-head h3{font-size:18px}
-.sheet iframe{border:0;width:100%;flex:1;background:var(--surface)}
 
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.btn,.fab{transition:none}}
 </style>
@@ -160,7 +174,8 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
       <a class="hide-sm" href="#how">Как работает</a>
       <a href="#vacancies">Вакансии</a>
       <a href="#employers">Работодателям</a>
-      <button class="theme-btn" id="theme-btn" type="button" aria-pressed="false">Тёмная тема</button>
+      <button class="pill" id="auth-btn" type="button" disabled>Загрузка…</button>
+      <button class="pill" id="theme-btn" type="button" aria-pressed="false">Тёмная тема</button>
     </nav>
   </header>
 
@@ -279,28 +294,96 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
 </button>
 
 <div class="panel" id="support-panel" role="dialog" aria-label="Тех. поддержка" hidden>
-  <div class="panel-head">
+  <div class="head" style="padding:0;border:0">
     <h3>Тех. поддержка</h3>
-    <button class="x" id="panel-close" type="button" aria-label="Закрыть">×</button>
+    <button class="x" data-close="support-panel" type="button" aria-label="Закрыть">×</button>
   </div>
   <p class="muted">Напишите в группу поддержки. Команда отвечает прямо в Telegram.</p>
   <a class="btn" href="https://t.me/+AVImsjloWoM4MGYy" target="_blank" rel="noopener">Открыть Telegram <span class="arrow">→</span></a>
 </div>
 
+<!-- Вход и регистрация -->
+<div class="modal" id="auth-modal" hidden role="dialog" aria-modal="true" aria-labelledby="auth-title">
+  <div class="dlg">
+    <div class="head">
+      <h3 id="auth-title">Вход</h3>
+      <button class="x" data-close="auth-modal" type="button" aria-label="Закрыть">×</button>
+    </div>
+    <div class="tabs">
+      <button class="tab on" type="button" data-mode="login">Вход</button>
+      <button class="tab" type="button" data-mode="signup">Регистрация</button>
+    </div>
+    <div class="body">
+      <form class="sup" id="auth-form" novalidate>
+        <label id="auth-name-row" hidden>Имя
+          <input class="field" name="name" type="text" maxlength="100" autocomplete="name">
+        </label>
+        <label>Почта
+          <input class="field" name="email" type="email" required maxlength="200" autocomplete="email">
+        </label>
+        <label>Пароль (от 6 символов)
+          <input class="field" name="password" type="password" required minlength="6" maxlength="100" autocomplete="current-password">
+        </label>
+        <button class="btn" id="auth-submit" type="submit">Войти <span class="arrow">→</span></button>
+        <p class="form-status" id="auth-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Профиль -->
+<div class="modal" id="profile-modal" hidden role="dialog" aria-modal="true" aria-labelledby="profile-title">
+  <div class="dlg">
+    <div class="head">
+      <h3 id="profile-title">Профиль</h3>
+      <button class="x" data-close="profile-modal" type="button" aria-label="Закрыть">×</button>
+    </div>
+    <div class="body">
+      <p class="small" id="profile-email"></p>
+      <form class="sup" id="profile-form" novalidate>
+        <label>Имя
+          <input class="field" name="full_name" type="text" maxlength="100">
+        </label>
+        <label>Курс или вуз
+          <input class="field" name="course" type="text" maxlength="100">
+        </label>
+        <label>Контакт для ответа (Telegram или телефон)
+          <input class="field" name="contact" type="text" maxlength="100">
+        </label>
+        <fieldset>
+          <legend>Свободные дни</legend>
+          <div class="days" id="p-days"></div>
+        </fieldset>
+        <button class="btn" type="submit">Сохранить</button>
+        <button class="btn alt" id="logout-btn" type="button">Выйти</button>
+        <p class="form-status" id="profile-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Google Form (отклик и заявка работодателя) -->
 <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="sheet">
-    <div class="sheet-head">
+    <div class="head">
       <h3 id="modal-title"></h3>
-      <button class="x" id="modal-close" type="button" aria-label="Закрыть">×</button>
+      <button class="x" data-close="modal" type="button" aria-label="Закрыть">×</button>
     </div>
     <iframe id="modal-frame" title="Форма заявки"></iframe>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
 <script>
 // Ссылки на формы Google Forms (отклик студента и заявка работодателя).
 const FORM_RESPONSE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmupMJpfznNtPaYNRIJoCjCWb3OYmHWCFMHjJbkE9ULfgBRg/viewform';
 const FORM_EMPLOYER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeBd4JfOWQN1AluqxzhGaogxHVpqty1GWZ44X4qJ-5pJTDO3Q/viewform';
+
+// Аккаунты (Supabase). Публичный ключ можно показывать: данные защищены правилами доступа в базе.
+const SB_URL = 'https://xhfxhfoowzvirkqshcrr.supabase.co';
+const SB_KEY = 'sb_publishable_kiPYIu7_uIBpa8sHOlZuZQ_6nSneMgy';
+const sb = (window.supabase && window.supabase.createClient) ? window.supabase.createClient(SB_URL, SB_KEY) : null;
+let currentUser = null;
 
 // Вакансии-примеры. Команда заменяет их на проверенные предложения.
 const VACANCIES = [
@@ -316,7 +399,9 @@ const DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+// Фильтры и каталог
 document.getElementById('f-days').innerHTML = DAYS.map(d => `<label class="chip"><input type="checkbox" name="fday" value="${d}"> ${d}</label>`).join('');
+document.getElementById('p-days').innerHTML = DAYS.map(d => `<label class="chip"><input type="checkbox" name="pday" value="${d}"> ${d}</label>`).join('');
 
 function renderCatalog(){
   const noExp = $('#f-noexp').checked;
@@ -359,7 +444,7 @@ const emp = $('#btn-employer');
 if (!FORM_EMPLOYER_URL){ emp.textContent = 'Заявка скоро'; $('#emp-note').textContent = 'Форма заявки откроется после запуска.'; }
 else { emp.disabled = false; }
 
-// Тема текста: светлая или тёмная. Выбор запоминается в браузере, если он доступен.
+// Тема текста
 const themeBtn = $('#theme-btn');
 function applyTheme(t){
   document.documentElement.dataset.theme = t;
@@ -375,36 +460,153 @@ themeBtn.addEventListener('click', () => {
   try { localStorage.setItem('cs-theme', next); } catch (e) {}
 });
 
-// Тех. поддержка: плавающая кнопка и окно со ссылкой на Telegram
-const fab = $('#fab'), panel = $('#support-panel');
-function setPanel(open){
-  panel.hidden = !open;
+// Окна
+function showModal(id){ $('#' + id).hidden = false; }
+function hideModal(id){
+  if (id === 'modal'){ $('#modal').hidden = true; $('#modal-frame').src = ''; }
+  else if (id === 'support-panel'){ $('#support-panel').hidden = true; fab.setAttribute('aria-expanded', 'false'); }
+  else { $('#' + id).hidden = true; }
+}
+const fab = $('#fab');
+fab.addEventListener('click', () => {
+  const open = $('#support-panel').hidden;
+  if (open) showModal('support-panel'); else hideModal('support-panel');
   fab.setAttribute('aria-expanded', String(open));
-}
-fab.addEventListener('click', () => setPanel(panel.hidden));
-$('#panel-close').addEventListener('click', () => setPanel(false));
-
-// Окно Google Form
-const modal = $('#modal'), frame = $('#modal-frame');
-function openForm(url, title){
-  frame.src = url + (url.includes('?') ? '&' : '?') + 'embedded=true';
-  $('#modal-title').textContent = title;
-  modal.hidden = false;
-}
-function closeForm(){ modal.hidden = true; frame.src = ''; }
+});
 document.addEventListener('click', e => {
-  const b = e.target.closest('[data-form]');
-  if (b && !b.disabled){
-    if (b.dataset.form === 'employer' && FORM_EMPLOYER_URL) openForm(FORM_EMPLOYER_URL, 'Заявка работодателя');
-    if (b.dataset.form === 'response' && FORM_RESPONSE_URL) openForm(FORM_RESPONSE_URL, 'Отклик на вакансию');
-  }
-  if (e.target === modal || e.target.closest('#modal-close')) closeForm();
+  const c = e.target.closest('[data-close]');
+  if (c) hideModal(c.dataset.close);
+  if (e.target.classList.contains('modal')) hideModal(e.target.id);
 });
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
-  if (!modal.hidden) closeForm();
-  else if (!panel.hidden) setPanel(false);
+  ['modal','profile-modal','auth-modal','support-panel'].forEach(id => { if (!$('#' + id).hidden) hideModal(id); });
 });
+
+// Google Form
+function openForm(url, title){
+  $('#modal-frame').src = url + (url.includes('?') ? '&' : '?') + 'embedded=true';
+  $('#modal-title').textContent = title;
+  showModal('modal');
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-form]');
+  if (!b || b.disabled) return;
+  if (b.dataset.form === 'employer' && FORM_EMPLOYER_URL) openForm(FORM_EMPLOYER_URL, 'Заявка работодателя');
+  if (b.dataset.form === 'response' && FORM_RESPONSE_URL) openForm(FORM_RESPONSE_URL, 'Отклик на вакансию');
+});
+
+// Аккаунты
+const RU_ERR = {
+  'Invalid login credentials': 'Неверная почта или пароль',
+  'User already registered': 'Аккаунт с этой почтой уже есть',
+  'Password should be at least 6 characters.': 'Пароль должен быть не короче 6 символов',
+  'Email not confirmed': 'Сначала подтвердите почту по ссылке из письма'
+};
+const errText = e => RU_ERR[e?.message] || e?.message || 'Что-то пошло не так. Попробуйте ещё раз.';
+function setStatus(el, text, ok){ el.className = 'form-status ' + (ok ? 'ok' : 'err'); el.textContent = text; }
+
+const authBtn = $('#auth-btn');
+let authMode = 'login';
+function setAuthMode(mode){
+  authMode = mode;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.mode === mode));
+  $('#auth-title').textContent = mode === 'login' ? 'Вход' : 'Регистрация';
+  $('#auth-submit').innerHTML = (mode === 'login' ? 'Войти' : 'Создать аккаунт') + ' <span class="arrow">→</span>';
+  $('#auth-name-row').hidden = mode === 'login';
+  $('#auth-form [name="password"]').autocomplete = mode === 'login' ? 'current-password' : 'new-password';
+}
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => setAuthMode(t.dataset.mode)));
+
+authBtn.addEventListener('click', () => {
+  if (currentUser){ openProfile(); return; }
+  $('#auth-form').reset();
+  setStatus($('#auth-status'), '');
+  setAuthMode('login');
+  showModal('auth-modal');
+});
+
+$('#auth-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const st = $('#auth-status'), btn = $('#auth-submit');
+  const f = new FormData(e.target);
+  const email = String(f.get('email') || '').trim();
+  const password = String(f.get('password') || '');
+  const name = String(f.get('name') || '').trim();
+  if (!email || password.length < 6 || (authMode === 'signup' && !name)){
+    setStatus(st, 'Заполните почту, имя и пароль (от 6 символов).');
+    return;
+  }
+  btn.disabled = true;
+  setStatus(st, 'Подождите…', true);
+  try {
+    if (authMode === 'login'){
+      const { error } = await sb.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      hideModal('auth-modal');
+    } else {
+      const { data, error } = await sb.auth.signUp({ email, password, options: { data: { full_name: name } } });
+      if (error) throw error;
+      if (data.session) hideModal('auth-modal');
+      else setStatus(st, 'Аккаунт создан. Подтвердите почту по ссылке из письма и войдите.', true);
+    }
+  } catch (err) {
+    setStatus(st, errText(err));
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+// Профиль
+function openProfile(){
+  $('#profile-email').textContent = currentUser.email || '';
+  setStatus($('#profile-status'), '');
+  const f = $('#profile-form');
+  f.reset();
+  document.querySelectorAll('input[name="pday"]').forEach(i => i.checked = false);
+  showModal('profile-modal');
+  sb.from('profiles').select('*').eq('id', currentUser.id).maybeSingle().then(({ data, error }) => {
+    if (error){ setStatus($('#profile-status'), errText(error)); return; }
+    f.full_name.value = data?.full_name || '';
+    f.course.value = data?.course || '';
+    f.contact.value = data?.contact || '';
+    const days = data?.free_days || [];
+    document.querySelectorAll('input[name="pday"]').forEach(i => i.checked = days.includes(i.value));
+  });
+}
+$('#profile-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const st = $('#profile-status');
+  const f = new FormData(e.target);
+  const row = {
+    id: currentUser.id,
+    full_name: String(f.get('full_name') || '').trim() || null,
+    course: String(f.get('course') || '').trim() || null,
+    contact: String(f.get('contact') || '').trim() || null,
+    free_days: f.getAll('pday'),
+    updated_at: new Date().toISOString()
+  };
+  const { error } = await sb.from('profiles').upsert(row);
+  setStatus(st, error ? errText(error) : 'Сохранено', !error);
+});
+$('#logout-btn').addEventListener('click', async () => {
+  await sb.auth.signOut();
+  hideModal('profile-modal');
+});
+
+function renderAuthBtn(){
+  authBtn.disabled = false;
+  authBtn.textContent = currentUser ? 'Профиль' : 'Войти';
+}
+if (sb){
+  sb.auth.onAuthStateChange((_event, session) => {
+    currentUser = session?.user || null;
+    renderAuthBtn();
+  });
+} else {
+  authBtn.textContent = 'Вход скоро';
+  authBtn.disabled = true;
+}
 </script>
 </body>
 </html>
