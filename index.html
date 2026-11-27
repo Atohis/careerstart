@@ -54,6 +54,8 @@ nav{display:flex;gap:22px;align-items:center}
 nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px}
 nav a:hover{color:var(--hi)}
 @media (max-width:720px){nav .hide-sm{display:none}}
+.theme-btn{font:700 13px Manrope,sans-serif;color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+.theme-btn:hover{background:var(--hi);color:var(--hi-ink)}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:3px solid var(--ink);background:var(--accent);color:var(--accent-ink);font:800 15px Manrope,sans-serif;padding:12px 20px;border-radius:14px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
@@ -117,11 +119,11 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .support-cta li{margin-bottom:6px}
 
 /* плавающая кнопка поддержки и окно формы */
-.fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));width:60px;height:60px;border-radius:50%;border:3px solid var(--ink);background:var(--accent);color:var(--accent-ink);box-shadow:4px 4px 0 var(--ink);display:grid;place-items:center;cursor:pointer;z-index:40;transition:transform .12s ease,box-shadow .12s ease}
-.fab:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
-.fab:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
-.fab svg{width:28px;height:28px}
-.panel{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(max(18px,env(safe-area-inset-bottom,0px)) + 74px);width:min(380px,calc(100vw - 36px));max-height:min(78vh,640px);overflow:auto;background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);z-index:41;padding:18px;display:grid;gap:12px}
+.fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--accent);color:var(--accent-ink);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;cursor:pointer;z-index:40;padding:0;transition:transform .12s ease,box-shadow .12s ease}
+.fab:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.fab:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.fab svg{width:22px;height:22px}
+.panel{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 56px);width:min(380px,calc(100vw - 36px));max-height:min(78vh,640px);overflow:auto;background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);z-index:41;padding:18px;display:grid;gap:12px}
 .panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .panel-head h3{font-size:18px}
 .x{appearance:none;background:transparent;border:0;color:var(--ink);font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
@@ -173,6 +175,7 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
       <a href="#vacancies">Вакансии</a>
       <a href="#employers">Работодателям</a>
       <a class="hide-sm" href="#support">Поддержка</a>
+      <button class="theme-btn" id="theme-btn" type="button" aria-pressed="false">Тёмная тема</button>
     </nav>
   </header>
 
@@ -409,6 +412,22 @@ renderCatalog();
 const emp = $('#btn-employer');
 if (!FORM_EMPLOYER_URL){ emp.textContent = 'Заявка скоро'; $('#emp-note').textContent = 'Форма заявки откроется после запуска.'; }
 else { emp.disabled = false; }
+
+// Тема текста: светлая или тёмная. Выбор запоминается в браузере, если он доступен.
+const themeBtn = $('#theme-btn');
+function applyTheme(t){
+  document.documentElement.dataset.theme = t;
+  themeBtn.textContent = t === 'dark' ? 'Светлая тема' : 'Тёмная тема';
+  themeBtn.setAttribute('aria-pressed', String(t === 'dark'));
+}
+let savedTheme = null;
+try { savedTheme = localStorage.getItem('cs-theme'); } catch (e) {}
+applyTheme(savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+themeBtn.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  try { localStorage.setItem('cs-theme', next); } catch (e) {}
+});
 
 // Тех. поддержка: плавающая кнопка и окно
 const fab = $('#fab'), panel = $('#support-panel');
