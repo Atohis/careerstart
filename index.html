@@ -2,91 +2,189 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>CareerStart пилот</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CareerStart</title>
+<meta name="description" content="Стажировки и подработка для студентов, которые совмещают работу с учёбой.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
 :root{
-  --bg:#F6F3EC; --surface:#FFFFFF; --ink:#1D1B17; --muted:#6B675E; --line:#E4DFD3;
-  --accent:#0F5E5A; --accent-ink:#FFFFFF; --amber:#B7791F; --amber-bg:#FBF1DE; --ok:#2F7A4B; --ok-bg:#E3F2E8;
+  --bg:#F7F5F0; --surface:#FFFFFF; --ink:#18201F; --muted:#5F6B69; --line:#E3E6E1;
+  --accent:#0E6B65; --accent-2:#E8F3F1; --accent-ink:#FFFFFF; --warm:#F3B45A; --warm-bg:#FDF3E1;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(24,32,31,.06);
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#161513; --surface:#1F1E1B; --ink:#EFEBE2; --muted:#A09B90; --line:#34322C;
-    --accent:#5FB8B2; --accent-ink:#0E1F1E; --amber:#E0A94E; --amber-bg:#3A2E18; --ok:#7CC796; --ok-bg:#1F3326;
+    --bg:#101413; --surface:#171D1C; --ink:#E8EEEC; --muted:#9AA7A4; --line:#25302E;
+    --accent:#4FC1B8; --accent-2:#15302D; --accent-ink:#0A1514; --warm:#F3B45A; --warm-bg:#2B2212;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#161513; --surface:#1F1E1B; --ink:#EFEBE2; --muted:#A09B90; --line:#34322C;
-  --accent:#5FB8B2; --accent-ink:#0E1F1E; --amber:#E0A94E; --amber-bg:#3A2E18; --ok:#7CC796; --ok-bg:#1F3326;
+  --bg:#101413; --surface:#171D1C; --ink:#E8EEEC; --muted:#9AA7A4; --line:#25302E;
+  --accent:#4FC1B8; --accent-2:#15302D; --accent-ink:#0A1514; --warm:#F3B45A; --warm-bg:#2B2212;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 Manrope,system-ui,-apple-system,"Segoe UI",sans-serif}
-.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
-h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:700;letter-spacing:-.01em;text-wrap:balance;margin:0}
-h1{font-size:clamp(30px,5vw,44px)}
-h2{font-size:24px;margin:28px 0 10px}
-h3{font-size:18px;margin-bottom:6px}
-.lead{color:var(--muted);margin:8px 0 0;max-width:60ch}
-.small{font-size:13px;color:var(--muted)}
-.banner{background:var(--amber-bg);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:10px;padding:12px 14px;margin:18px 0;font-size:14px}
-.banner strong{color:var(--amber)}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px}
-.tab{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 14px;border-radius:999px;font:600 14px Manrope,sans-serif;cursor:pointer}
-.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:700;letter-spacing:-.02em;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(38px,6.4vw,64px)}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:12px}
+h3{font-size:20px;line-height:1.25}
+p{margin:0;max-width:62ch}
+.muted{color:var(--muted)}
+.small{font-size:14px;color:var(--muted)}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 [hidden]{display:none!important}
-.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
-.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:13px;cursor:pointer;background:var(--bg);color:var(--ink)}
-.chip:has(input:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+
+/* шапка */
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.logo{font:700 20px Fraunces,Georgia,serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.logo span{color:var(--accent)}
+nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:15px;margin-left:22px}
+nav a:hover{color:var(--ink)}
+@media (max-width:620px){nav a{margin-left:14px}}
+
+/* герой */
+.hero{padding-block:48px 64px;display:grid;gap:36px;grid-template-columns:1.15fr .85fr;align-items:center}
+@media (max-width:820px){.hero{grid-template-columns:1fr}}
+.hero .lead{font-size:clamp(18px,2.2vw,21px);color:var(--muted);margin-top:18px;max-width:46ch}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:0;background:var(--accent);color:var(--accent-ink);font:700 15px Manrope,sans-serif;padding:13px 20px;border-radius:12px;cursor:pointer;transition:transform .15s ease,opacity .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.hero-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);display:grid;gap:14px}
+.stat{display:flex;align-items:center;gap:14px;padding:12px;border-radius:12px;background:var(--accent-2)}
+.stat .dot{width:40px;height:40px;border-radius:12px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:800}
+.stat b{display:block;font-size:15px}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* блоки */
+section.block{padding-block:56px;border-top:1px solid var(--line)}
+.split{display:grid;gap:18px;grid-template-columns:1fr 1fr}
+@media (max-width:720px){.split{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);display:grid;gap:10px;min-width:0}
+.card ul{margin:6px 0 0;padding-left:20px;color:var(--muted)}
+.card li{margin-bottom:6px}
+.steps{display:grid;gap:14px;grid-template-columns:repeat(3,1fr);margin-top:26px}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
+.step .n{font:800 13px Manrope,sans-serif;color:var(--accent);margin-bottom:10px;letter-spacing:.06em}
+
+/* фильтры и каталог */
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-top:22px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:14px;cursor:pointer;background:var(--bg);color:var(--ink);font-weight:600}
+.chip:has(input:checked){border-color:var(--accent);background:var(--accent-2);color:var(--accent)}
+.chip input{accent-color:var(--accent)}
+.chip select{border:0;background:transparent;color:inherit;font:inherit;padding:0}
 .days{display:flex;gap:6px;flex-wrap:wrap}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));margin-top:14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.badge{display:inline-block;font-size:12px;font-weight:600;padding:3px 8px;border-radius:999px;background:var(--ok-bg);color:var(--ok);width:max-content}
-.badge.demo{background:var(--amber-bg);color:var(--amber)}
-.pay{font:600 19px Fraunces,Georgia,serif;color:var(--accent)}
-.duties{margin:0;font-size:14px}
-.card .btn{margin-top:auto}
-.btn{display:inline-block;text-align:center;text-decoration:none;appearance:none;border:0;background:var(--accent);color:var(--accent-ink);font:600 15px Manrope,sans-serif;padding:11px 16px;border-radius:10px;cursor:pointer}
-.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-.btn[aria-disabled="true"]{opacity:.5;pointer-events:none}
-.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px}
-ul{margin:0;padding-left:20px}
-li{margin-bottom:6px}
-.steps{display:grid;gap:12px;margin-top:10px}
-.step{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start}
-.step .n{width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700}
-.empty{border:1px dashed var(--line);border-radius:14px;padding:20px;color:var(--muted);text-align:center;margin-top:14px}
-.note{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:20px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));margin-top:18px}
+.vac{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;min-width:0;transition:border-color .15s ease}
+.vac:hover{border-color:var(--accent)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--accent-2);color:var(--accent)}
+.tag.example{background:var(--warm-bg);color:var(--warm)}
+.pay{font:700 22px Fraunces,Georgia,serif;color:var(--ink)}
+.vac .meta{font-size:14px;color:var(--muted)}
+.vac p{font-size:14.5px;color:var(--muted)}
+.vac .btn{margin-top:auto;width:100%}
+.empty{border:1px dashed var(--line);border-radius:16px;padding:22px;color:var(--muted);text-align:center;margin-top:18px}
+
+/* работодателям */
+.price{font:800 44px Fraunces,Georgia,serif;letter-spacing:-.02em}
+.price small{font:600 16px Manrope,sans-serif;color:var(--muted);margin-left:6px}
+.note-box{background:var(--warm-bg);border-radius:14px;padding:14px 16px;font-size:14px;color:var(--ink)}
+
+.btn:disabled{opacity:.45;pointer-events:none}
+.modal{position:fixed;inset:0;background:rgba(10,14,13,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal[hidden]{display:none!important}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:18px;width:min(640px,100%);height:min(86vh,760px);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow)}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.sheet-head h3{font-size:18px}
+.x{appearance:none;background:transparent;border:0;color:var(--muted);font-size:26px;line-height:1;cursor:pointer;padding:0 4px}
+.sheet iframe{border:0;width:100%;flex:1;background:var(--surface)}
+/* подвал */
+footer{padding-block:32px 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <h1>CareerStart</h1>
-    <p class="lead">Стажировки и подработка для студентов, которые совмещают работу с учёбой. Студенты видят условия до отклика, работодатели находят студентов, которым могут платить.</p>
+
+  <header class="top">
+    <a class="logo" href="#">Career<span>Start</span></a>
+    <nav aria-label="Основное">
+      <a href="#vacancies">Вакансии</a>
+      <a href="#employers">Работодателям</a>
+      <a href="#how">Как работает</a>
+    </nav>
   </header>
 
-  <div class="banner" role="note">
-    <strong>Пилот.</strong> Вакансии проверяет и публикует команда вручную. Отклики и заявки принимают формы, данные видит только команда. Оплата тестовая: деньги не списываются. Метка «ДЕМО» означает выдуманную вакансию для теста.
+  <!-- Герой -->
+  <div class="hero">
+    <div>
+      <div class="kicker">Для студентов и работодателей</div>
+      <h1>Первая работа, которая помещается в расписание</h1>
+      <p class="lead">Вакансии без опыта, с понятной оплатой и графиком до отклика. Выбирайте по свободным дням и часам.</p>
+      <div class="cta">
+        <a class="btn" href="#vacancies">Смотреть вакансии</a>
+        <a class="btn ghost" href="#employers">Разместить вакансию</a>
+      </div>
+    </div>
+    <aside class="hero-card" aria-label="Коротко о сервисе">
+      <div class="stat"><div class="dot">1</div><div><b>Условия до отклика</b><span>Оплата, график и обязанности видны сразу</span></div></div>
+      <div class="stat"><div class="dot">2</div><div><b>Подбор по расписанию</b><span>Фильтр по свободным дням и часам</span></div></div>
+      <div class="stat"><div class="dot">3</div><div><b>Вакансии проверяет команда</b><span>Публикуем только проверенные предложения</span></div></div>
+    </aside>
   </div>
 
-  <div class="tabs" role="tablist">
-    <button class="tab" role="tab" id="t-students" aria-selected="true" aria-controls="p-students">Вакансии для студентов</button>
-    <button class="tab" role="tab" id="t-employers" aria-selected="false" aria-controls="p-employers">Работодателям</button>
-  </div>
+  <!-- Как работает -->
+  <section class="block" id="how">
+    <div class="kicker">Как это работает</div>
+    <h2>Просто для студента и для работодателя</h2>
+    <div class="split" style="margin-top:22px">
+      <div class="card">
+        <h3>Студентам</h3>
+        <ul>
+          <li>Смотрите вакансии без опыта и с понятными условиями.</li>
+          <li>Отмечайте свободные дни и часы, список сужается сам.</li>
+          <li>Откликайтесь бесплатно. Команда свяжется, когда работодатель ответит.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Работодателям</h3>
+        <ul>
+          <li>Оставляете заявку с условиями и графиком.</li>
+          <li>Команда проверяет вакансию и публикует её в каталоге.</li>
+          <li>Получаете отклики студентов с курсом и свободным временем.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">ШАГ 1</div><h3>Заявка</h3><p class="muted" style="margin-top:6px">Компания, условия, оплата, график и обязанности.</p></div>
+      <div class="step"><div class="n">ШАГ 2</div><h3>Проверка</h3><p class="muted" style="margin-top:6px">Команда проверяет условия и отвечает на заявку.</p></div>
+      <div class="step"><div class="n">ШАГ 3</div><h3>Публикация</h3><p class="muted" style="margin-top:6px">Вакансия появляется в каталоге, студенты откликаются.</p></div>
+    </div>
+  </section>
 
-  <!-- Студенты -->
-  <section id="p-students" role="tabpanel" aria-labelledby="t-students">
+  <!-- Вакансии -->
+  <section class="block" id="vacancies">
+    <div class="kicker">Вакансии</div>
+    <h2>Примеры вакансий</h2>
+    <p class="muted">Ниже примеры, чтобы показать формат карточек. Реальные предложения появятся после проверки команды.</p>
+
     <div class="filters" aria-label="Фильтры">
       <label class="chip"><input type="checkbox" id="f-noexp"> Без опыта</label>
-      <span class="small">Свободные дни:</span>
+      <span class="small" style="font-weight:600">Свободные дни</span>
       <div class="days" id="f-days"></div>
       <label class="chip">Оплата от
-        <select id="f-pay" style="width:auto;padding:4px 6px;border-radius:8px;background:var(--bg);color:var(--ink);border:1px solid var(--line)">
+        <select id="f-pay" aria-label="Минимальная оплата">
           <option value="0">любая</option>
           <option value="2000">2 000 ₸</option>
           <option value="3000">3 000 ₸</option>
@@ -94,60 +192,71 @@ li{margin-bottom:6px}
         </select>
       </label>
     </div>
+
     <div id="catalog" class="grid" aria-live="polite"></div>
     <div id="catalog-empty" class="empty" hidden></div>
-    <p class="note">Отклик откроет форму. Команда свяжется с вами, когда работодатель ответит.</p>
   </section>
 
-  <!-- Работодатели -->
-  <section id="p-employers" role="tabpanel" aria-labelledby="t-employers" hidden>
-    <h2>Разместить вакансию</h2>
-    <p class="lead">Размещение одной вакансии — 10 000 ₸ (пилотная цена). Вы заполняете заявку, команда проверяет условия и публикует вакансию вручную.</p>
-
-    <div class="steps" style="margin-top:18px">
-      <div class="step"><div class="n">1</div><div><h3>Заявка</h3><p class="small">Компания, условия, оплата, график, обязанности.</p></div></div>
-      <div class="step"><div class="n">2</div><div><h3>Оплата</h3><p class="small">Оплата тестовая, деньги не списываются. Ссылка на оплату появится после подключения провайдера.</p></div></div>
-      <div class="step"><div class="n">3</div><div><h3>Публикация</h3><p class="small">Команда проверяет вакансию и публикует её в каталоге.</p></div></div>
+  <!-- Работодателям -->
+  <section class="block" id="employers">
+    <div class="kicker">Работодателям</div>
+    <div class="split" style="align-items:center">
+      <div>
+        <h2>Разместите вакансию и получите студентов</h2>
+        <p class="muted">Заполните заявку: команда проверит условия, опубликует вакансию и передаст вам отклики.</p>
+        <div class="cta">
+          <button class="btn" id="btn-employer" type="button" data-form="employer" disabled>Оставить заявку</button>
+        </div>
+        <p class="small" id="emp-note" style="margin-top:12px"></p>
+      </div>
+      <div class="card">
+        <div class="price">15 000 ₸<small>за вакансию</small></div>
+        <ul class="muted" style="margin:0;padding-left:20px">
+          <li>Публикация после проверки условий</li>
+          <li>Отклики студентов с курсом и свободным временем</li>
+          <li>Вакансия остаётся в каталоге, пока актуальна</li>
+        </ul>
+        <div class="note-box">Оплата пока тестовая: деньги не списываются. Ссылку на оплату добавим после подключения провайдера.</div>
+      </div>
     </div>
-
-    <div class="cta" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
-      <a class="btn" id="btn-employer" href="#" target="_blank" rel="noopener" aria-disabled="true">Заполнить заявку</a>
-      <button class="btn ghost" id="btn-pay-test" type="button">Тест оплаты (имитация)</button>
-    </div>
-    <p class="small" id="pay-msg" role="status" style="margin-top:12px"></p>
-    <p class="note">Имитация оплаты ничего не сохраняет и не списывает деньги. Она нужна, чтобы показать шаг оплаты.</p>
   </section>
 
-  <footer style="margin-top:32px" class="small">Пилот CareerStart в рамках курса «MVP». Данные хранятся только для теста и будут удалены после защиты.</footer>
+  <footer>
+    <span>© CareerStart · Тестовая версия</span>
+    <span>Данные заявок хранятся только для обработки и не передаются третьим лицам.</span>
+  </footer>
+</div>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="sheet">
+    <div class="sheet-head">
+      <h3 id="modal-title"></h3>
+      <button class="x" id="modal-close" type="button" aria-label="Закрыть">×</button>
+    </div>
+    <iframe id="modal-frame" title="Форма заявки"></iframe>
+  </div>
 </div>
 
 <script>
-// Настройки. Вставьте ссылки на формы Google Forms; пока пусто, кнопки отключены.
-const FORM_RESPONSE_URL = ''; // отклик студента
-const FORM_EMPLOYER_URL = ''; // заявка работодателя
+// Ссылки на формы Google Forms. Пока пусто, кнопки неактивны.
+const FORM_RESPONSE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmupMJpfznNtPaYNRIJoCjCWb3OYmHWCFMHjJbkE9ULfgBRg/viewform'; // отклик студента
+const FORM_EMPLOYER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeBd4JfOWQN1AluqxzhGaogxHVpqty1GWZ44X4qJ-5pJTDO3Q/viewform'; // заявка работодателя
 
-// Вакансии. Демо-записи помечены «ДЕМО». Команда добавляет и удаляет записи после проверки условий.
+// Вакансии-примеры. Команда заменяет их на проверенные предложения.
 const VACANCIES = [
-  { id:'demo-1', demo:true, title:'Помощник в отдел учёта (демо)', company:'Компания «Пример» (демо)', payAmount:3000, payText:'3 000 ₸ за смену', days:['Вт','Чт'], hours:'14:00–18:00', format:'На месте', noExperience:true, duties:'Ведение таблиц, сверка накладных. Пример вакансии для теста.' },
-  { id:'demo-2', demo:true, title:'Стажёр SMM (демо)', company:'Студия «Пример» (демо)', payAmount:2500, payText:'2 500 ₸ за публикацию', days:['Пн','Ср','Пт'], hours:'гибкий график', format:'Удалённо', noExperience:true, duties:'Подготовка постов для соцсетей. Пример вакансии для теста.' },
-  { id:'demo-3', demo:true, title:'Оператор склада (демо)', company:'Магазин «Пример» (демо)', payAmount:5500, payText:'5 500 ₸ за смену', days:['Сб','Вс'], hours:'09:00–15:00', format:'На месте', noExperience:false, duties:'Приёмка и выкладка товара. Пример вакансии для теста.' }
+  { id:'v1', example:true, title:'Помощник в отдел учёта', company:'Пример: торговая компания', payAmount:3000, payText:'3 000 ₸ за смену', days:['Вт','Чт'], hours:'14:00–18:00', format:'На месте', noExperience:true, duties:'Ведение таблиц и сверка накладных. Обучение на месте.' },
+  { id:'v2', example:true, title:'Стажёр SMM', company:'Пример: digital-студия', payAmount:2500, payText:'2 500 ₸ за публикацию', days:['Пн','Ср','Пт'], hours:'гибкий график', format:'Удалённо', noExperience:true, duties:'Подготовка постов и сторис для соцсетей.' },
+  { id:'v3', example:true, title:'Оператор склада', company:'Пример: магазин', payAmount:5500, payText:'5 500 ₸ за смену', days:['Сб','Вс'], hours:'09:00–15:00', format:'На месте', noExperience:false, duties:'Приёмка, маркировка и выкладка товара.' },
+  { id:'v4', example:true, title:'Кассир-консультант', company:'Пример: сеть магазинов', payAmount:4000, payText:'4 000 ₸ за смену', days:['Пт','Сб'], hours:'18:00–22:00', format:'На месте', noExperience:true, duties:'Работа на кассе и консультации покупателей.' },
+  { id:'v5', example:true, title:'Администратор в кафе', company:'Пример: кафе', payAmount:3500, payText:'3 500 ₸ за смену', days:['Вт','Ср','Чт'], hours:'12:00–17:00', format:'На месте', noExperience:true, duties:'Приём гостей и работа с кассой.' },
+  { id:'v6', example:true, title:'Ассистент в офис', company:'Пример: IT-компания', payAmount:2800, payText:'2 800 ₸ за смену', days:['Пн','Ср'], hours:'10:00–14:00', format:'Гибрид', noExperience:false, duties:'Работа с входящими заявками и почтой.' }
 ];
 
 const DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt = n => Number(n || 0).toLocaleString('ru-RU') + ' ₸';
 
 document.getElementById('f-days').innerHTML = DAYS.map(d => `<label class="chip"><input type="checkbox" name="fday" value="${d}"> ${d}</label>`).join('');
-
-function setTab(id){
-  document.getElementById('t-students').setAttribute('aria-selected', id==='students'?'true':'false');
-  document.getElementById('t-employers').setAttribute('aria-selected', id==='employers'?'true':'false');
-  $('#p-students').hidden = id !== 'students';
-  $('#p-employers').hidden = id !== 'employers';
-}
-document.getElementById('t-students').onclick = () => setTab('students');
-document.getElementById('t-employers').onclick = () => setTab('employers');
 
 function renderCatalog(){
   const noExp = $('#f-noexp').checked;
@@ -161,25 +270,24 @@ function renderCatalog(){
   if (list.length === 0){
     box.innerHTML = '';
     empty.hidden = false;
-    empty.textContent = VACANCIES.length === 0
-      ? 'Пока нет опубликованных вакансий. Команда добавляет их после проверки.'
-      : 'По этим фильтрам вакансий нет. Попробуйте снять часть фильтров.';
+    empty.textContent = 'По этим фильтрам вакансий нет. Попробуйте снять часть фильтров.';
     return;
   }
   empty.hidden = true;
   box.innerHTML = list.map(v => `
-    <article class="card">
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        ${v.demo ? '<span class="badge demo">ДЕМО</span>' : ''}
-        ${v.noExperience ? '<span class="badge">Без опыта</span>' : ''}
+    <article class="vac">
+      <div class="tags">
+        <span class="tag example">Пример</span>
+        ${v.noExperience ? '<span class="tag">Без опыта</span>' : ''}
+        <span class="tag">${esc(v.format)}</span>
       </div>
       <h3>${esc(v.title)}</h3>
-      <div class="small">${esc(v.company)} · ${esc(v.format)}</div>
+      <div class="meta">${esc(v.company)}</div>
       <div class="pay">${esc(v.payText)}</div>
-      <div class="small">${esc(v.days.join(', '))} · ${esc(v.hours)}</div>
-      <p class="duties">${esc(v.duties)}</p>
+      <div class="meta">${esc(v.days.join(', '))} · ${esc(v.hours)}</div>
+      <p>${esc(v.duties)}</p>
       ${FORM_RESPONSE_URL
-        ? `<a class="btn" href="${esc(FORM_RESPONSE_URL)}" target="_blank" rel="noopener">Откликнуться</a>`
+        ? `<button class="btn" type="button" data-form="response">Откликнуться</button>`
         : `<span class="btn" aria-disabled="true">Отклик скоро</span>`}
     </article>`).join('');
 }
@@ -187,14 +295,26 @@ function renderCatalog(){
 document.querySelectorAll('input[name="fday"]').forEach(i => i.addEventListener('change', renderCatalog));
 renderCatalog();
 
-// Работодатели
 const emp = $('#btn-employer');
-if (FORM_EMPLOYER_URL){ emp.href = FORM_EMPLOYER_URL; emp.setAttribute('aria-disabled','false'); }
-else { emp.textContent = 'Заявка скоро'; }
+if (!FORM_EMPLOYER_URL){ emp.textContent = 'Заявка скоро'; $('#emp-note').textContent = 'Форма заявки откроется после запуска.'; }
+else { emp.disabled = false; }
 
-$('#btn-pay-test').addEventListener('click', () => {
-  $('#pay-msg').textContent = 'Имитация: «Тестовая оплата пройдена». Деньги не списаны, заявка не сохранена. Для реальной оплаты нужен подключённый провайдер.';
+const modal = $('#modal'), frame = $('#modal-frame');
+function openForm(url, title){
+  frame.src = url + (url.includes('?') ? '&' : '?') + 'embedded=true';
+  $('#modal-title').textContent = title;
+  modal.hidden = false;
+}
+function closeForm(){ modal.hidden = true; frame.src = ''; }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-form]');
+  if (b && !b.disabled){
+    if (b.dataset.form === 'employer' && FORM_EMPLOYER_URL) openForm(FORM_EMPLOYER_URL, 'Заявка работодателя');
+    if (b.dataset.form === 'response' && FORM_RESPONSE_URL) openForm(FORM_RESPONSE_URL, 'Отклик на вакансию');
+  }
+  if (e.target === modal || e.target.closest('#modal-close')) closeForm();
 });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeForm(); });
 </script>
 </body>
 </html>
