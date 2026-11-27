@@ -114,25 +114,15 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .price small{display:block;font:700 16px Manrope,sans-serif;letter-spacing:0;color:var(--muted);margin-top:8px}
 .note{background:var(--hi);color:var(--hi-ink);border:2px solid var(--ink);border-radius:14px;padding:14px 16px;font-size:14px}
 
-/* плавающая кнопка поддержки и окно формы */
+/* плавающая кнопка поддержки и окно */
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--accent);color:var(--accent-ink);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;cursor:pointer;z-index:40;padding:0;transition:transform .12s ease,box-shadow .12s ease}
 .fab:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
 .fab:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
 .fab svg{width:22px;height:22px}
-.panel{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 56px);width:min(380px,calc(100vw - 32px));max-height:min(78vh,640px);overflow:auto;background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);z-index:41;padding:18px;display:grid;gap:12px}
+.panel{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 56px);width:min(340px,calc(100vw - 32px));background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);z-index:41;padding:18px;display:grid;gap:14px}
 .panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .panel-head h3{font-size:18px}
 .x{appearance:none;background:transparent;border:0;color:var(--ink);font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
-form.sup{display:grid;gap:12px}
-form.sup label{display:grid;gap:6px;font-weight:700;font-size:14px;min-width:0}
-form.sup label.chk{display:flex;gap:10px;align-items:flex-start;font-weight:500;color:var(--muted);font-size:13px}
-form.sup label.chk input{margin-top:4px;accent-color:var(--ink)}
-.field{font:500 16px Manrope,sans-serif;color:var(--ink);background:var(--bg);border:2px solid var(--ink);border-radius:12px;padding:10px 12px;width:100%;min-width:0}
-textarea.field{resize:vertical;min-height:100px}
-.field:focus{outline:3px solid var(--hi);outline-offset:1px}
-.form-status{font-size:14px;min-height:1.4em;margin:0}
-.form-status.ok{font-weight:700}
-.form-status.err{background:var(--hi);color:var(--hi-ink);border-radius:10px;padding:8px 12px}
 
 details{background:var(--surface);border:3px solid var(--ink);border-radius:18px;padding:18px 22px;box-shadow:4px 4px 0 var(--ink)}
 details + details{margin-top:14px}
@@ -293,31 +283,8 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
     <h3>Тех. поддержка</h3>
     <button class="x" id="panel-close" type="button" aria-label="Закрыть">×</button>
   </div>
-  <form class="sup" id="sup-form" novalidate>
-    <label>Тема
-      <select class="field" name="topic" required>
-        <option>Вопрос по вакансии</option>
-        <option>Проблема с откликом</option>
-        <option>Работодателю</option>
-        <option>Другое</option>
-      </select>
-    </label>
-    <label>Имя
-      <input class="field" name="name" type="text" required maxlength="100" autocomplete="name">
-    </label>
-    <label>Телефон или Telegram для ответа
-      <input class="field" name="contact" type="text" required maxlength="100">
-    </label>
-    <label>Сообщение
-      <textarea class="field" name="message" required maxlength="1000"></textarea>
-    </label>
-    <label class="chk">
-      <input type="checkbox" name="consent" required>
-      <span>Согласен(а) на обработку указанных данных, чтобы ответить на обращение.</span>
-    </label>
-    <button class="btn" id="sup-submit" type="submit">Отправить <span class="arrow">→</span></button>
-    <p class="form-status" id="sup-status" role="status" aria-live="polite"></p>
-  </form>
+  <p class="muted">Напишите в группу поддержки. Команда отвечает прямо в Telegram.</p>
+  <a class="btn" href="https://t.me/+AVImsjloWoM4MGYy" target="_blank" rel="noopener">Открыть Telegram <span class="arrow">→</span></a>
 </div>
 
 <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -334,14 +301,6 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
 // Ссылки на формы Google Forms (отклик студента и заявка работодателя).
 const FORM_RESPONSE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmupMJpfznNtPaYNRIJoCjCWb3OYmHWCFMHjJbkE9ULfgBRg/viewform';
 const FORM_EMPLOYER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeBd4JfOWQN1AluqxzhGaogxHVpqty1GWZ44X4qJ-5pJTDO3Q/viewform';
-
-// Поддержка: обращения уходят в Google Form.
-// action — адрес .../formResponse формы поддержки.
-// entries — номера полей из предзаполненной ссылки (entry.NNNN).
-const SUPPORT = {
-  action: '',
-  entries: { topic: '', name: '', contact: '', message: '' }
-};
 
 // Вакансии-примеры. Команда заменяет их на проверенные предложения.
 const VACANCIES = [
@@ -416,51 +375,14 @@ themeBtn.addEventListener('click', () => {
   try { localStorage.setItem('cs-theme', next); } catch (e) {}
 });
 
-// Тех. поддержка: плавающая кнопка и окно
+// Тех. поддержка: плавающая кнопка и окно со ссылкой на Telegram
 const fab = $('#fab'), panel = $('#support-panel');
 function setPanel(open){
   panel.hidden = !open;
   fab.setAttribute('aria-expanded', String(open));
-  if (open) $('#sup-form [name="name"]').focus();
 }
 fab.addEventListener('click', () => setPanel(panel.hidden));
 $('#panel-close').addEventListener('click', () => setPanel(false));
-
-const supForm = $('#sup-form'), supStatus = $('#sup-status'), supSubmit = $('#sup-submit');
-if (!SUPPORT.action){
-  supSubmit.disabled = true;
-  supSubmit.innerHTML = 'Отправка скоро';
-  supStatus.className = 'form-status err';
-  supStatus.textContent = 'Отправка обращений включится после запуска.';
-}
-supForm.addEventListener('submit', async e => {
-  e.preventDefault();
-  if (!SUPPORT.action) return;
-  supStatus.className = 'form-status';
-  if (!supForm.checkValidity()){
-    supForm.reportValidity();
-    supStatus.className = 'form-status err';
-    supStatus.textContent = 'Заполните все поля и отметьте согласие.';
-    return;
-  }
-  const v = Object.fromEntries(new FormData(supForm));
-  const body = new URLSearchParams();
-  for (const k of Object.keys(SUPPORT.entries)) body.append(SUPPORT.entries[k], v[k] || '');
-  supSubmit.disabled = true;
-  supStatus.textContent = 'Отправляем…';
-  try {
-    // no-cors: ответ Google недоступен браузеру, поэтому успех фиксируем после запроса.
-    await fetch(SUPPORT.action, { method:'POST', mode:'no-cors', body });
-    supForm.reset();
-    supStatus.className = 'form-status ok';
-    supStatus.textContent = 'Обращение отправлено. Команда ответит по указанному контакту.';
-  } catch (err) {
-    supStatus.className = 'form-status err';
-    supStatus.textContent = 'Не удалось отправить. Проверьте соединение и попробуйте ещё раз.';
-  } finally {
-    supSubmit.disabled = false;
-  }
-});
 
 // Окно Google Form
 const modal = $('#modal'), frame = $('#modal-frame');
