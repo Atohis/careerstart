@@ -9,22 +9,22 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
 :root{
-  --bg:#FFF6EC; --surface:#FFFFFF; --ink:#16162A; --muted:#5B5B72; --line:#EADFD0;
-  --accent:#FF5A36; --accent-2:#FFD23F; --mint:#1FBF9A; --lilac:#7C5CFF; --accent-ink:#FFFFFF;
+  --bg:#F4EDE4; --surface:#FBF7F1; --ink:#3D2F28; --muted:#7D6B5E; --line:#E2D3C2;
+  --accent:#A9643F; --accent-2:#EBD5B3; --mint:#B7C4A7; --lilac:#9C7A6A; --accent-ink:#FFFCF8;
   --shadow:6px 6px 0 var(--ink);
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#15131F; --surface:#1F1C2E; --ink:#F6F1FF; --muted:#A9A3C2; --line:#352F4C;
-    --accent:#FF7A5C; --accent-2:#FFD23F; --mint:#3DDDB5; --lilac:#A08CFF; --accent-ink:#1A0F0B;
+    --bg:#241D19; --surface:#2F2620; --ink:#F3E9DE; --muted:#B5A394; --line:#4A3B31;
+    --accent:#D9976F; --accent-2:#7A5E43; --mint:#8FA383; --lilac:#B39383; --accent-ink:#1F1613;
     --shadow:6px 6px 0 #000;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#15131F; --surface:#1F1C2E; --ink:#F6F1FF; --muted:#A9A3C2; --line:#352F4C;
-  --accent:#FF7A5C; --accent-2:#FFD23F; --mint:#3DDDB5; --lilac:#A08CFF; --accent-ink:#1A0F0B;
+  --bg:#241D19; --surface:#2F2620; --ink:#F3E9DE; --muted:#B5A394; --line:#4A3B31;
+  --accent:#D9976F; --accent-2:#7A5E43; --mint:#8FA383; --lilac:#B39383; --accent-ink:#1F1613;
   --shadow:6px 6px 0 #000;
   color-scheme:dark;
 }
@@ -43,28 +43,24 @@ p{margin:0;max-width:60ch}
 :focus-visible{outline:3px solid var(--lilac);outline-offset:3px;border-radius:8px}
 [hidden]{display:none!important}
 
-/* логотип */
 .logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
 .logo svg{width:36px;height:36px;flex:none}
 .logo b{font:900 20px Unbounded,system-ui,sans-serif;letter-spacing:-.04em}
 .logo b i{font-style:normal;color:var(--accent)}
 
-/* шапка */
 header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
 nav{display:flex;gap:22px;align-items:center}
 nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px}
 nav a:hover{color:var(--accent)}
 @media (max-width:720px){nav .hide-sm{display:none}}
 
-/* кнопки */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:3px solid var(--ink);background:var(--accent);color:var(--accent-ink);font:800 15px Manrope,sans-serif;padding:12px 20px;border-radius:14px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
 .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
 .btn.alt{background:var(--surface);color:var(--ink)}
-.btn:disabled,.btn[aria-disabled="true"]{opacity:.45;pointer-events:none;box-shadow:none}
+.btn:disabled,.btn[aria-disabled="true"]{opacity:.5;pointer-events:none;box-shadow:none}
 .arrow{font-size:18px}
 
-/* герой */
 .hero{padding-block:56px 72px;display:grid;gap:40px;grid-template-columns:1.2fr .8fr;align-items:center}
 @media (max-width:860px){.hero{grid-template-columns:1fr}}
 .hero h1 span{background:var(--accent-2);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
@@ -76,12 +72,10 @@ nav a:hover{color:var(--accent)}
 .sticker b{display:block;font-size:15px}
 .sticker span{font-size:14px;color:var(--muted)}
 
-/* полоса */
 .marquee{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;border-block:3px solid var(--ink)}
 .marquee div{display:inline-block;padding:14px 0;font:800 18px Unbounded,sans-serif;letter-spacing:-.02em}
 .marquee span{color:var(--accent-2);margin:0 18px}
 
-/* блоки */
 section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .two{display:grid;gap:22px;grid-template-columns:1fr 1fr}
 @media (max-width:760px){.two{grid-template-columns:1fr}}
@@ -89,14 +83,12 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .card ul{margin:0;padding-left:20px;color:var(--muted)}
 .card li{margin-bottom:6px}
 
-/* шаги */
 .steps{display:grid;gap:18px;grid-template-columns:repeat(3,1fr);margin-top:30px}
 @media (max-width:860px){.steps{grid-template-columns:1fr}}
 .step{background:var(--surface);border:3px solid var(--ink);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
 .step .num{font:900 56px/1 Unbounded,sans-serif;color:var(--accent);letter-spacing:-.05em}
 .step p{margin-top:10px;color:var(--muted)}
 
-/* фильтры и каталог */
 .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--surface);border:3px solid var(--ink);border-radius:18px;padding:14px;margin-top:26px;box-shadow:var(--shadow)}
 .chip{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);border-radius:999px;padding:7px 14px;font:700 14px Manrope,sans-serif;cursor:pointer;background:var(--bg);color:var(--ink)}
 .chip:has(input:checked){background:var(--accent-2)}
@@ -114,12 +106,23 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .vac .btn{margin-top:auto;width:100%}
 .empty{border:3px dashed var(--ink);border-radius:18px;padding:24px;color:var(--muted);text-align:center;margin-top:20px}
 
-/* работодателям */
 .price{font:900 clamp(48px,7vw,80px)/1 Unbounded,sans-serif;letter-spacing:-.05em}
 .price small{display:block;font:700 16px Manrope,sans-serif;letter-spacing:0;color:var(--muted);margin-top:8px}
 .note{background:var(--accent-2);color:var(--ink);border:2px solid var(--ink);border-radius:14px;padding:14px 16px;font-size:14px}
 
-/* вопросы */
+.support-wrap{display:grid;gap:28px;grid-template-columns:1fr 1.1fr;align-items:start;margin-top:30px}
+@media (max-width:860px){.support-wrap{grid-template-columns:1fr}}
+form.card{gap:14px}
+form.card label{display:grid;gap:6px;font-weight:700;font-size:14px;min-width:0}
+form.card label.chk{display:flex;gap:10px;align-items:flex-start;font-weight:500;color:var(--muted);font-size:14px}
+form.card label.chk input{margin-top:5px;accent-color:var(--accent)}
+.field{font:500 16px Manrope,sans-serif;color:var(--ink);background:var(--bg);border:2px solid var(--ink);border-radius:12px;padding:11px 13px;width:100%;min-width:0}
+textarea.field{resize:vertical;min-height:120px}
+.field:focus{outline:3px solid var(--lilac);outline-offset:1px}
+.form-status{font-size:15px;min-height:1.6em;margin:0}
+.form-status.ok{color:var(--accent);font-weight:700}
+.form-status.err{color:var(--ink);background:var(--accent-2);border-radius:10px;padding:8px 12px}
+
 details{background:var(--surface);border:3px solid var(--ink);border-radius:18px;padding:18px 22px;box-shadow:4px 4px 0 var(--ink)}
 details + details{margin-top:14px}
 summary{cursor:pointer;font:800 17px Manrope,sans-serif;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
@@ -128,11 +131,9 @@ summary::after{content:"+";font:900 24px Unbounded,sans-serif;color:var(--accent
 details[open] summary::after{content:"–"}
 details p{margin-top:12px;color:var(--muted)}
 
-/* подвал */
 footer{padding-block:40px 56px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--muted)}
 
-/* окно формы */
-.modal{position:fixed;inset:0;background:rgba(22,22,42,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal{position:fixed;inset:0;background:rgba(61,47,40,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
 .modal[hidden]{display:none!important}
 .sheet{background:var(--surface);border:3px solid var(--ink);border-radius:22px;width:min(640px,100%);height:min(86vh,760px);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow)}
 .sheet-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:3px solid var(--ink)}
@@ -149,9 +150,9 @@ footer{padding-block:40px 56px;border-top:3px solid var(--ink);display:flex;just
   <header class="top">
     <a class="logo" href="#" aria-label="CareerStart, в начало">
       <svg viewBox="0 0 48 48" aria-hidden="true">
-        <rect x="3" y="30" width="12" height="15" rx="3" fill="#FF5A36" stroke="#16162A" stroke-width="2.5"/>
-        <rect x="18" y="19" width="12" height="26" rx="3" fill="#FFD23F" stroke="#16162A" stroke-width="2.5"/>
-        <rect x="33" y="6" width="12" height="39" rx="3" fill="#1FBF9A" stroke="#16162A" stroke-width="2.5"/>
+        <rect x="3" y="30" width="12" height="15" rx="3" fill="#A9643F" stroke="#3D2F28" stroke-width="2.5"/>
+        <rect x="18" y="19" width="12" height="26" rx="3" fill="#EBD5B3" stroke="#3D2F28" stroke-width="2.5"/>
+        <rect x="33" y="6" width="12" height="39" rx="3" fill="#B7C4A7" stroke="#3D2F28" stroke-width="2.5"/>
       </svg>
       <b>Career<i>Start</i></b>
     </a>
@@ -159,6 +160,7 @@ footer{padding-block:40px 56px;border-top:3px solid var(--ink);display:flex;just
       <a class="hide-sm" href="#how">Как работает</a>
       <a href="#vacancies">Вакансии</a>
       <a href="#employers">Работодателям</a>
+      <a class="hide-sm" href="#support">Поддержка</a>
     </nav>
   </header>
 
@@ -237,6 +239,49 @@ footer{padding-block:40px 56px;border-top:3px solid var(--ink);display:flex;just
     </div>
   </section>
 
+  <section class="block" id="support">
+    <span class="kicker">Поддержка</span>
+    <h2>Что-то не работает? Напишите прямо здесь</h2>
+    <p class="muted">Обращение получит команда. Ответим по контакту, который вы укажете.</p>
+
+    <div class="support-wrap">
+      <div class="card">
+        <h3>Как мы отвечаем</h3>
+        <ul>
+          <li>Вопросы по вакансии: по карточке, которую вы выбрали.</li>
+          <li>Проблемы с откликом: если форма не отправилась, напишите, что вы заполняли.</li>
+          <li>Работодателям: изменить вакансию, оплатить размещение или убрать карточку.</li>
+        </ul>
+      </div>
+
+      <form class="card" id="sup-form" novalidate>
+        <label>Тема
+          <select class="field" name="topic" required>
+            <option>Вопрос по вакансии</option>
+            <option>Проблема с откликом</option>
+            <option>Работодателю</option>
+            <option>Другое</option>
+          </select>
+        </label>
+        <label>Имя
+          <input class="field" name="name" type="text" required maxlength="100" autocomplete="name">
+        </label>
+        <label>Телефон или Telegram для ответа
+          <input class="field" name="contact" type="text" required maxlength="100">
+        </label>
+        <label>Сообщение
+          <textarea class="field" name="message" required maxlength="1000"></textarea>
+        </label>
+        <label class="chk">
+          <input type="checkbox" name="consent" required>
+          <span>Согласен(а) на обработку указанных данных, чтобы ответить на обращение.</span>
+        </label>
+        <button class="btn" id="sup-submit" type="submit">Отправить <span class="arrow">→</span></button>
+        <p class="form-status" id="sup-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
   <section class="block" id="faq">
     <span class="kicker">Вопросы</span>
     <h2>Частые вопросы</h2>
@@ -275,9 +320,17 @@ footer{padding-block:40px 56px;border-top:3px solid var(--ink);display:flex;just
 </div>
 
 <script>
-// Ссылки на формы Google Forms.
-const FORM_RESPONSE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmupMJpfznNtPaYNRIJoCjCWb3OYmHWCFMHjJbkE9ULfgBRg/viewform'; // отклик студента
-const FORM_EMPLOYER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeBd4JfOWQN1AluqxzhGaogxHVpqty1GWZ44X4qJ-5pJTDO3Q/viewform'; // заявка работодателя
+// Ссылки на формы Google Forms (отклик студента и заявка работодателя).
+const FORM_RESPONSE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmupMJpfznNtPaYNRIJoCjCWb3OYmHWCFMHjJbkE9ULfgBRg/viewform';
+const FORM_EMPLOYER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeBd4JfOWQN1AluqxzhGaogxHVpqty1GWZ44X4qJ-5pJTDO3Q/viewform';
+
+// Поддержка прямо на сайте: обращения уходят в Google Form.
+// action — адрес .../formResponse вашей формы поддержки.
+// entries — номера полей из предзаполненной ссылки (entry.NNNN).
+const SUPPORT = {
+  action: '',
+  entries: { topic: '', name: '', contact: '', message: '' }
+};
 
 // Вакансии-примеры. Команда заменяет их на проверенные предложения.
 const VACANCIES = [
@@ -335,6 +388,43 @@ renderCatalog();
 const emp = $('#btn-employer');
 if (!FORM_EMPLOYER_URL){ emp.textContent = 'Заявка скоро'; $('#emp-note').textContent = 'Форма заявки откроется после запуска.'; }
 else { emp.disabled = false; }
+
+// Поддержка на сайте
+const supForm = $('#sup-form'), supStatus = $('#sup-status'), supSubmit = $('#sup-submit');
+if (!SUPPORT.action){
+  supSubmit.disabled = true;
+  supSubmit.innerHTML = 'Отправка скоро';
+  supStatus.className = 'form-status err';
+  supStatus.textContent = 'Отправка обращений включится после запуска. Пока эта форма не отправляет данные.';
+}
+supForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!SUPPORT.action) return;
+  supStatus.className = 'form-status';
+  if (!supForm.checkValidity()){
+    supForm.reportValidity();
+    supStatus.className = 'form-status err';
+    supStatus.textContent = 'Заполните все поля и отметьте согласие.';
+    return;
+  }
+  const v = Object.fromEntries(new FormData(supForm));
+  const body = new URLSearchParams();
+  for (const k of Object.keys(SUPPORT.entries)) body.append(SUPPORT.entries[k], v[k] || '');
+  supSubmit.disabled = true;
+  supStatus.textContent = 'Отправляем…';
+  try {
+    // no-cors: ответ сервера Google недоступен браузеру, поэтому считаем отправку успешной после запроса.
+    await fetch(SUPPORT.action, { method:'POST', mode:'no-cors', body });
+    supForm.reset();
+    supStatus.className = 'form-status ok';
+    supStatus.textContent = 'Обращение отправлено. Команда ответит по указанному контакту.';
+  } catch (err) {
+    supStatus.className = 'form-status err';
+    supStatus.textContent = 'Не удалось отправить. Проверьте соединение и попробуйте ещё раз.';
+  } finally {
+    supSubmit.disabled = false;
+  }
+});
 
 const modal = $('#modal'), frame = $('#modal-frame');
 function openForm(url, title){
