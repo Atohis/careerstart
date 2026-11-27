@@ -18,14 +18,14 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#04202C; --surface:#304040; --ink:#C9D1C8; --muted:#C9D1C8; --line:#5B7065;
-    --accent:#C9D1C8; --accent-ink:#04202C; --hi:#5B7065; --hi-ink:#C9D1C8;
+    --accent:#5B7065; --accent-ink:#C9D1C8; --hi:#5B7065; --hi-ink:#C9D1C8;
     --shadow:6px 6px 0 #000;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#04202C; --surface:#304040; --ink:#C9D1C8; --muted:#C9D1C8; --line:#5B7065;
-  --accent:#C9D1C8; --accent-ink:#04202C; --hi:#5B7065; --hi-ink:#C9D1C8;
+  --accent:#5B7065; --accent-ink:#C9D1C8; --hi:#5B7065; --hi-ink:#C9D1C8;
   --shadow:6px 6px 0 #000;
   color-scheme:dark;
 }
@@ -41,7 +41,7 @@ p{margin:0;max-width:60ch}
 .muted{color:var(--muted)}
 .small{font-size:14px;color:var(--muted)}
 .kicker{display:inline-block;font:700 13px Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:6px 12px;border-radius:999px;margin-bottom:18px}
-:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:8px}
+:focus-visible{outline:3px solid var(--hi);outline-offset:3px;border-radius:8px}
 [hidden]{display:none!important}
 
 .logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
@@ -49,12 +49,13 @@ p{margin:0;max-width:60ch}
 .logo b{font:900 20px Unbounded,system-ui,sans-serif;letter-spacing:-.04em}
 .logo b i{font-style:normal;color:var(--hi)}
 
-header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
-nav{display:flex;gap:22px;align-items:center}
+header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 16px;padding-block:18px}
+nav{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
 nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px}
 nav a:hover{color:var(--hi)}
 @media (max-width:720px){nav .hide-sm{display:none}}
-.theme-btn{font:700 13px Manrope,sans-serif;color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+
+.theme-btn{font:700 13px Manrope,sans-serif;color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap}
 .theme-btn:hover{background:var(--hi);color:var(--hi-ink)}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:3px solid var(--ink);background:var(--accent);color:var(--accent-ink);font:800 15px Manrope,sans-serif;padding:12px 20px;border-radius:14px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
@@ -113,17 +114,12 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .price small{display:block;font:700 16px Manrope,sans-serif;letter-spacing:0;color:var(--muted);margin-top:8px}
 .note{background:var(--hi);color:var(--hi-ink);border:2px solid var(--ink);border-radius:14px;padding:14px 16px;font-size:14px}
 
-.support-cta{display:grid;gap:22px;grid-template-columns:1fr auto;align-items:center;margin-top:30px}
-@media (max-width:760px){.support-cta{grid-template-columns:1fr}}
-.support-cta ul{margin:0;padding-left:20px;color:var(--muted)}
-.support-cta li{margin-bottom:6px}
-
 /* плавающая кнопка поддержки и окно формы */
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--accent);color:var(--accent-ink);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;cursor:pointer;z-index:40;padding:0;transition:transform .12s ease,box-shadow .12s ease}
 .fab:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
 .fab:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
 .fab svg{width:22px;height:22px}
-.panel{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 56px);width:min(380px,calc(100vw - 36px));max-height:min(78vh,640px);overflow:auto;background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);z-index:41;padding:18px;display:grid;gap:12px}
+.panel{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 56px);width:min(380px,calc(100vw - 32px));max-height:min(78vh,640px);overflow:auto;background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);z-index:41;padding:18px;display:grid;gap:12px}
 .panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .panel-head h3{font-size:18px}
 .x{appearance:none;background:transparent;border:0;color:var(--ink);font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
@@ -174,7 +170,6 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
       <a class="hide-sm" href="#how">Как работает</a>
       <a href="#vacancies">Вакансии</a>
       <a href="#employers">Работодателям</a>
-      <a class="hide-sm" href="#support">Поддержка</a>
       <button class="theme-btn" id="theme-btn" type="button" aria-pressed="false">Тёмная тема</button>
     </nav>
   </header>
@@ -251,19 +246,6 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
         </ul>
         <div class="note">Оплата пока тестовая: деньги не списываются. Ссылку на оплату добавим после подключения провайдера.</div>
       </div>
-    </div>
-  </section>
-
-  <section class="block" id="support">
-    <span class="kicker">Поддержка</span>
-    <h2>Что-то не работает? Напишите нам</h2>
-    <div class="support-cta">
-      <ul>
-        <li>Вопросы по вакансии: по карточке, которую вы выбрали.</li>
-        <li>Проблемы с откликом: если форма не отправилась, напишите, что вы заполняли.</li>
-        <li>Работодателям: изменить вакансию, оплатить размещение или убрать карточку.</li>
-      </ul>
-      <button class="btn" type="button" id="open-support-2">Написать в поддержку <span class="arrow">→</span></button>
     </div>
   </section>
 
@@ -348,7 +330,7 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
 const FORM_RESPONSE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmupMJpfznNtPaYNRIJoCjCWb3OYmHWCFMHjJbkE9ULfgBRg/viewform';
 const FORM_EMPLOYER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeBd4JfOWQN1AluqxzhGaogxHVpqty1GWZ44X4qJ-5pJTDO3Q/viewform';
 
-// Поддержка на сайте: обращения уходят в Google Form.
+// Поддержка: обращения уходят в Google Form.
 // action — адрес .../formResponse формы поддержки.
 // entries — номера полей из предзаполненной ссылки (entry.NNNN).
 const SUPPORT = {
@@ -438,7 +420,6 @@ function setPanel(open){
 }
 fab.addEventListener('click', () => setPanel(panel.hidden));
 $('#panel-close').addEventListener('click', () => setPanel(false));
-$('#open-support-2').addEventListener('click', () => setPanel(true));
 
 const supForm = $('#sup-form'), supStatus = $('#sup-status'), supSubmit = $('#sup-submit');
 if (!SUPPORT.action){
