@@ -76,9 +76,9 @@ nav a:hover{color:var(--hi)}
 .sticker b{display:block;font-size:15px}
 .sticker span{font-size:14px;color:var(--muted)}
 
-.marquee{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;border-block:3px solid var(--ink)}
-.marquee div{display:inline-block;padding:14px 0;font:800 18px Unbounded,sans-serif;letter-spacing:-.02em}
-.marquee span{color:var(--hi);margin:0 18px}
+.perks{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding-block:44px 8px}
+.perk{display:inline-flex;align-items:center;gap:10px;font:800 16px/1.2 Unbounded,sans-serif;letter-spacing:-.01em;color:var(--hi-ink);background:var(--hi);border:3px solid var(--ink);border-radius:999px;padding:14px 24px;box-shadow:4px 4px 0 var(--ink);white-space:normal;text-align:center}
+.perk::before{content:"✦";font-size:14px;color:var(--accent-ink);opacity:.9}
 
 section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .two{display:grid;gap:22px;grid-template-columns:1fr 1fr}
@@ -191,7 +191,12 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
     </aside>
   </div>
 
-  <div class="marquee" aria-hidden="true"><div>БЕЗ ОПЫТА <span>✦</span> ПО РАСПИСАНИЮ <span>✦</span> ОПЛАТА ДО ОТКЛИКА <span>✦</span> БЕЗ ОПЫТА <span>✦</span> ПО РАСПИСАНИЮ <span>✦</span> ОПЛАТА ДО ОТКЛИКА</div></div>
+  <div class="perks" aria-label="Главное о сервисе">
+    <span class="perk">Без опыта</span>
+    <span class="perk">По расписанию</span>
+    <span class="perk">Оплата до отклика</span>
+    <span class="perk">Проверенные вакансии</span>
+  </div>
 
   <section class="block" id="how">
     <span class="kicker">Как это работает</span>
