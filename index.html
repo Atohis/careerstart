@@ -8,23 +8,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
+/* Палитра: #04202C, #304040, #5B7065, #C9D1C8 */
 :root{
-  --bg:#F4EDE4; --surface:#FBF7F1; --ink:#3D2F28; --muted:#7D6B5E; --line:#E2D3C2;
-  --accent:#A9643F; --accent-2:#EBD5B3; --mint:#B7C4A7; --lilac:#9C7A6A; --accent-ink:#FFFCF8;
-  --shadow:6px 6px 0 var(--ink);
+  --bg:#C9D1C8; --surface:#DCE2DA; --ink:#04202C; --muted:#304040; --line:#5B7065;
+  --accent:#304040; --accent-ink:#C9D1C8; --hi:#5B7065; --hi-ink:#C9D1C8;
+  --shadow:6px 6px 0 #04202C;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#241D19; --surface:#2F2620; --ink:#F3E9DE; --muted:#B5A394; --line:#4A3B31;
-    --accent:#D9976F; --accent-2:#7A5E43; --mint:#8FA383; --lilac:#B39383; --accent-ink:#1F1613;
+    --bg:#04202C; --surface:#304040; --ink:#C9D1C8; --muted:#C9D1C8; --line:#5B7065;
+    --accent:#C9D1C8; --accent-ink:#04202C; --hi:#5B7065; --hi-ink:#C9D1C8;
     --shadow:6px 6px 0 #000;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#241D19; --surface:#2F2620; --ink:#F3E9DE; --muted:#B5A394; --line:#4A3B31;
-  --accent:#D9976F; --accent-2:#7A5E43; --mint:#8FA383; --lilac:#B39383; --accent-ink:#1F1613;
+  --bg:#04202C; --surface:#304040; --ink:#C9D1C8; --muted:#C9D1C8; --line:#5B7065;
+  --accent:#C9D1C8; --accent-ink:#04202C; --hi:#5B7065; --hi-ink:#C9D1C8;
   --shadow:6px 6px 0 #000;
   color-scheme:dark;
 }
@@ -40,18 +41,18 @@ p{margin:0;max-width:60ch}
 .muted{color:var(--muted)}
 .small{font-size:14px;color:var(--muted)}
 .kicker{display:inline-block;font:700 13px Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:6px 12px;border-radius:999px;margin-bottom:18px}
-:focus-visible{outline:3px solid var(--lilac);outline-offset:3px;border-radius:8px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:8px}
 [hidden]{display:none!important}
 
 .logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
 .logo svg{width:36px;height:36px;flex:none}
 .logo b{font:900 20px Unbounded,system-ui,sans-serif;letter-spacing:-.04em}
-.logo b i{font-style:normal;color:var(--accent)}
+.logo b i{font-style:normal;color:var(--hi)}
 
 header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
 nav{display:flex;gap:22px;align-items:center}
 nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px}
-nav a:hover{color:var(--accent)}
+nav a:hover{color:var(--hi)}
 @media (max-width:720px){nav .hide-sm{display:none}}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:3px solid var(--ink);background:var(--accent);color:var(--accent-ink);font:800 15px Manrope,sans-serif;padding:12px 20px;border-radius:14px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
@@ -63,18 +64,18 @@ nav a:hover{color:var(--accent)}
 
 .hero{padding-block:56px 72px;display:grid;gap:40px;grid-template-columns:1.2fr .8fr;align-items:center}
 @media (max-width:860px){.hero{grid-template-columns:1fr}}
-.hero h1 span{background:var(--accent-2);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hero h1 span{background:var(--hi);color:var(--hi-ink);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .hero .lead{font-size:clamp(18px,2.2vw,22px);margin-top:22px;color:var(--muted);max-width:44ch}
 .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
-.sticker{background:var(--mint);border:3px solid var(--ink);border-radius:24px;box-shadow:var(--shadow);padding:24px;display:grid;gap:14px;transform:rotate(-2deg)}
-.sticker .row{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:2px solid var(--ink);border-radius:16px;padding:12px}
+.sticker{background:var(--hi);color:var(--hi-ink);border:3px solid var(--ink);border-radius:24px;box-shadow:var(--shadow);padding:24px;display:grid;gap:14px;transform:rotate(-2deg)}
+.sticker .row{display:flex;gap:12px;align-items:flex-start;background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:16px;padding:12px}
 .sticker .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:900 15px Unbounded,sans-serif}
 .sticker b{display:block;font-size:15px}
 .sticker span{font-size:14px;color:var(--muted)}
 
 .marquee{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;border-block:3px solid var(--ink)}
 .marquee div{display:inline-block;padding:14px 0;font:800 18px Unbounded,sans-serif;letter-spacing:-.02em}
-.marquee span{color:var(--accent-2);margin:0 18px}
+.marquee span{color:var(--hi);margin:0 18px}
 
 section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .two{display:grid;gap:22px;grid-template-columns:1fr 1fr}
@@ -86,20 +87,20 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .steps{display:grid;gap:18px;grid-template-columns:repeat(3,1fr);margin-top:30px}
 @media (max-width:860px){.steps{grid-template-columns:1fr}}
 .step{background:var(--surface);border:3px solid var(--ink);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
-.step .num{font:900 56px/1 Unbounded,sans-serif;color:var(--accent);letter-spacing:-.05em}
+.step .num{font:900 56px/1 Unbounded,sans-serif;color:var(--hi);letter-spacing:-.05em}
 .step p{margin-top:10px;color:var(--muted)}
 
 .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--surface);border:3px solid var(--ink);border-radius:18px;padding:14px;margin-top:26px;box-shadow:var(--shadow)}
 .chip{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);border-radius:999px;padding:7px 14px;font:700 14px Manrope,sans-serif;cursor:pointer;background:var(--bg);color:var(--ink)}
-.chip:has(input:checked){background:var(--accent-2)}
+.chip:has(input:checked){background:var(--hi);color:var(--hi-ink)}
 .chip input{accent-color:var(--ink)}
 .chip select{border:0;background:transparent;color:inherit;font:inherit;padding:0}
 .days{display:flex;gap:6px;flex-wrap:wrap}
 .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:24px}
 .vac{background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .vac .tags{display:flex;gap:6px;flex-wrap:wrap}
-.tag{font:700 12px Manrope,sans-serif;padding:5px 10px;border-radius:999px;border:2px solid var(--ink);background:var(--mint);color:var(--ink)}
-.tag.ex{background:var(--accent-2)}
+.tag{font:700 12px Manrope,sans-serif;padding:5px 10px;border-radius:999px;border:2px solid var(--ink);background:var(--hi);color:var(--hi-ink)}
+.tag.ex{background:var(--bg);color:var(--ink)}
 .pay{font:900 24px Unbounded,sans-serif;letter-spacing:-.03em}
 .vac .meta{font-size:14px;color:var(--muted)}
 .vac p{font-size:14.5px;color:var(--muted)}
@@ -108,40 +109,51 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 
 .price{font:900 clamp(48px,7vw,80px)/1 Unbounded,sans-serif;letter-spacing:-.05em}
 .price small{display:block;font:700 16px Manrope,sans-serif;letter-spacing:0;color:var(--muted);margin-top:8px}
-.note{background:var(--accent-2);color:var(--ink);border:2px solid var(--ink);border-radius:14px;padding:14px 16px;font-size:14px}
+.note{background:var(--hi);color:var(--hi-ink);border:2px solid var(--ink);border-radius:14px;padding:14px 16px;font-size:14px}
 
-.support-wrap{display:grid;gap:28px;grid-template-columns:1fr 1.1fr;align-items:start;margin-top:30px}
-@media (max-width:860px){.support-wrap{grid-template-columns:1fr}}
-form.card{gap:14px}
-form.card label{display:grid;gap:6px;font-weight:700;font-size:14px;min-width:0}
-form.card label.chk{display:flex;gap:10px;align-items:flex-start;font-weight:500;color:var(--muted);font-size:14px}
-form.card label.chk input{margin-top:5px;accent-color:var(--accent)}
-.field{font:500 16px Manrope,sans-serif;color:var(--ink);background:var(--bg);border:2px solid var(--ink);border-radius:12px;padding:11px 13px;width:100%;min-width:0}
-textarea.field{resize:vertical;min-height:120px}
-.field:focus{outline:3px solid var(--lilac);outline-offset:1px}
-.form-status{font-size:15px;min-height:1.6em;margin:0}
-.form-status.ok{color:var(--accent);font-weight:700}
-.form-status.err{color:var(--ink);background:var(--accent-2);border-radius:10px;padding:8px 12px}
+.support-cta{display:grid;gap:22px;grid-template-columns:1fr auto;align-items:center;margin-top:30px}
+@media (max-width:760px){.support-cta{grid-template-columns:1fr}}
+.support-cta ul{margin:0;padding-left:20px;color:var(--muted)}
+.support-cta li{margin-bottom:6px}
+
+/* плавающая кнопка поддержки и окно формы */
+.fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));width:60px;height:60px;border-radius:50%;border:3px solid var(--ink);background:var(--accent);color:var(--accent-ink);box-shadow:4px 4px 0 var(--ink);display:grid;place-items:center;cursor:pointer;z-index:40;transition:transform .12s ease,box-shadow .12s ease}
+.fab:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.fab:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.fab svg{width:28px;height:28px}
+.panel{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(max(18px,env(safe-area-inset-bottom,0px)) + 74px);width:min(380px,calc(100vw - 36px));max-height:min(78vh,640px);overflow:auto;background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);z-index:41;padding:18px;display:grid;gap:12px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.panel-head h3{font-size:18px}
+.x{appearance:none;background:transparent;border:0;color:var(--ink);font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
+form.sup{display:grid;gap:12px}
+form.sup label{display:grid;gap:6px;font-weight:700;font-size:14px;min-width:0}
+form.sup label.chk{display:flex;gap:10px;align-items:flex-start;font-weight:500;color:var(--muted);font-size:13px}
+form.sup label.chk input{margin-top:4px;accent-color:var(--ink)}
+.field{font:500 16px Manrope,sans-serif;color:var(--ink);background:var(--bg);border:2px solid var(--ink);border-radius:12px;padding:10px 12px;width:100%;min-width:0}
+textarea.field{resize:vertical;min-height:100px}
+.field:focus{outline:3px solid var(--hi);outline-offset:1px}
+.form-status{font-size:14px;min-height:1.4em;margin:0}
+.form-status.ok{font-weight:700}
+.form-status.err{background:var(--hi);color:var(--hi-ink);border-radius:10px;padding:8px 12px}
 
 details{background:var(--surface);border:3px solid var(--ink);border-radius:18px;padding:18px 22px;box-shadow:4px 4px 0 var(--ink)}
 details + details{margin-top:14px}
 summary{cursor:pointer;font:800 17px Manrope,sans-serif;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font:900 24px Unbounded,sans-serif;color:var(--accent)}
+summary::after{content:"+";font:900 24px Unbounded,sans-serif;color:var(--hi)}
 details[open] summary::after{content:"–"}
 details p{margin-top:12px;color:var(--muted)}
 
-footer{padding-block:40px 56px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--muted)}
+footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--muted)}
 
-.modal{position:fixed;inset:0;background:rgba(61,47,40,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal{position:fixed;inset:0;background:rgba(4,32,44,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
 .modal[hidden]{display:none!important}
 .sheet{background:var(--surface);border:3px solid var(--ink);border-radius:22px;width:min(640px,100%);height:min(86vh,760px);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow)}
 .sheet-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:3px solid var(--ink)}
 .sheet-head h3{font-size:18px}
-.x{appearance:none;background:transparent;border:0;color:var(--ink);font-size:28px;line-height:1;cursor:pointer;padding:0 4px}
 .sheet iframe{border:0;width:100%;flex:1;background:var(--surface)}
 
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.btn{transition:none}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.btn,.fab{transition:none}}
 </style>
 </head>
 <body>
@@ -150,9 +162,9 @@ footer{padding-block:40px 56px;border-top:3px solid var(--ink);display:flex;just
   <header class="top">
     <a class="logo" href="#" aria-label="CareerStart, в начало">
       <svg viewBox="0 0 48 48" aria-hidden="true">
-        <rect x="3" y="30" width="12" height="15" rx="3" fill="#A9643F" stroke="#3D2F28" stroke-width="2.5"/>
-        <rect x="18" y="19" width="12" height="26" rx="3" fill="#EBD5B3" stroke="#3D2F28" stroke-width="2.5"/>
-        <rect x="33" y="6" width="12" height="39" rx="3" fill="#B7C4A7" stroke="#3D2F28" stroke-width="2.5"/>
+        <rect x="3" y="30" width="12" height="15" rx="3" fill="#5B7065" stroke="#04202C" stroke-width="2.5"/>
+        <rect x="18" y="19" width="12" height="26" rx="3" fill="#304040" stroke="#04202C" stroke-width="2.5"/>
+        <rect x="33" y="6" width="12" height="39" rx="3" fill="#04202C" stroke="#04202C" stroke-width="2.5"/>
       </svg>
       <b>Career<i>Start</i></b>
     </a>
@@ -241,44 +253,14 @@ footer{padding-block:40px 56px;border-top:3px solid var(--ink);display:flex;just
 
   <section class="block" id="support">
     <span class="kicker">Поддержка</span>
-    <h2>Что-то не работает? Напишите прямо здесь</h2>
-    <p class="muted">Обращение получит команда. Ответим по контакту, который вы укажете.</p>
-
-    <div class="support-wrap">
-      <div class="card">
-        <h3>Как мы отвечаем</h3>
-        <ul>
-          <li>Вопросы по вакансии: по карточке, которую вы выбрали.</li>
-          <li>Проблемы с откликом: если форма не отправилась, напишите, что вы заполняли.</li>
-          <li>Работодателям: изменить вакансию, оплатить размещение или убрать карточку.</li>
-        </ul>
-      </div>
-
-      <form class="card" id="sup-form" novalidate>
-        <label>Тема
-          <select class="field" name="topic" required>
-            <option>Вопрос по вакансии</option>
-            <option>Проблема с откликом</option>
-            <option>Работодателю</option>
-            <option>Другое</option>
-          </select>
-        </label>
-        <label>Имя
-          <input class="field" name="name" type="text" required maxlength="100" autocomplete="name">
-        </label>
-        <label>Телефон или Telegram для ответа
-          <input class="field" name="contact" type="text" required maxlength="100">
-        </label>
-        <label>Сообщение
-          <textarea class="field" name="message" required maxlength="1000"></textarea>
-        </label>
-        <label class="chk">
-          <input type="checkbox" name="consent" required>
-          <span>Согласен(а) на обработку указанных данных, чтобы ответить на обращение.</span>
-        </label>
-        <button class="btn" id="sup-submit" type="submit">Отправить <span class="arrow">→</span></button>
-        <p class="form-status" id="sup-status" role="status" aria-live="polite"></p>
-      </form>
+    <h2>Что-то не работает? Напишите нам</h2>
+    <div class="support-cta">
+      <ul>
+        <li>Вопросы по вакансии: по карточке, которую вы выбрали.</li>
+        <li>Проблемы с откликом: если форма не отправилась, напишите, что вы заполняли.</li>
+        <li>Работодателям: изменить вакансию, оплатить размещение или убрать карточку.</li>
+      </ul>
+      <button class="btn" type="button" id="open-support-2">Написать в поддержку <span class="arrow">→</span></button>
     </div>
   </section>
 
@@ -309,6 +291,45 @@ footer{padding-block:40px 56px;border-top:3px solid var(--ink);display:flex;just
   </footer>
 </div>
 
+<button class="fab" id="fab" type="button" aria-label="Тех. поддержка" aria-controls="support-panel" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/>
+    <path d="M9 10h6M9 13.5h4"/>
+  </svg>
+</button>
+
+<div class="panel" id="support-panel" role="dialog" aria-label="Тех. поддержка" hidden>
+  <div class="panel-head">
+    <h3>Тех. поддержка</h3>
+    <button class="x" id="panel-close" type="button" aria-label="Закрыть">×</button>
+  </div>
+  <form class="sup" id="sup-form" novalidate>
+    <label>Тема
+      <select class="field" name="topic" required>
+        <option>Вопрос по вакансии</option>
+        <option>Проблема с откликом</option>
+        <option>Работодателю</option>
+        <option>Другое</option>
+      </select>
+    </label>
+    <label>Имя
+      <input class="field" name="name" type="text" required maxlength="100" autocomplete="name">
+    </label>
+    <label>Телефон или Telegram для ответа
+      <input class="field" name="contact" type="text" required maxlength="100">
+    </label>
+    <label>Сообщение
+      <textarea class="field" name="message" required maxlength="1000"></textarea>
+    </label>
+    <label class="chk">
+      <input type="checkbox" name="consent" required>
+      <span>Согласен(а) на обработку указанных данных, чтобы ответить на обращение.</span>
+    </label>
+    <button class="btn" id="sup-submit" type="submit">Отправить <span class="arrow">→</span></button>
+    <p class="form-status" id="sup-status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
 <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="sheet">
     <div class="sheet-head">
@@ -324,8 +345,8 @@ footer{padding-block:40px 56px;border-top:3px solid var(--ink);display:flex;just
 const FORM_RESPONSE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmupMJpfznNtPaYNRIJoCjCWb3OYmHWCFMHjJbkE9ULfgBRg/viewform';
 const FORM_EMPLOYER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeBd4JfOWQN1AluqxzhGaogxHVpqty1GWZ44X4qJ-5pJTDO3Q/viewform';
 
-// Поддержка прямо на сайте: обращения уходят в Google Form.
-// action — адрес .../formResponse вашей формы поддержки.
+// Поддержка на сайте: обращения уходят в Google Form.
+// action — адрес .../formResponse формы поддержки.
 // entries — номера полей из предзаполненной ссылки (entry.NNNN).
 const SUPPORT = {
   action: '',
@@ -389,13 +410,23 @@ const emp = $('#btn-employer');
 if (!FORM_EMPLOYER_URL){ emp.textContent = 'Заявка скоро'; $('#emp-note').textContent = 'Форма заявки откроется после запуска.'; }
 else { emp.disabled = false; }
 
-// Поддержка на сайте
+// Тех. поддержка: плавающая кнопка и окно
+const fab = $('#fab'), panel = $('#support-panel');
+function setPanel(open){
+  panel.hidden = !open;
+  fab.setAttribute('aria-expanded', String(open));
+  if (open) $('#sup-form [name="name"]').focus();
+}
+fab.addEventListener('click', () => setPanel(panel.hidden));
+$('#panel-close').addEventListener('click', () => setPanel(false));
+$('#open-support-2').addEventListener('click', () => setPanel(true));
+
 const supForm = $('#sup-form'), supStatus = $('#sup-status'), supSubmit = $('#sup-submit');
 if (!SUPPORT.action){
   supSubmit.disabled = true;
   supSubmit.innerHTML = 'Отправка скоро';
   supStatus.className = 'form-status err';
-  supStatus.textContent = 'Отправка обращений включится после запуска. Пока эта форма не отправляет данные.';
+  supStatus.textContent = 'Отправка обращений включится после запуска.';
 }
 supForm.addEventListener('submit', async e => {
   e.preventDefault();
@@ -413,7 +444,7 @@ supForm.addEventListener('submit', async e => {
   supSubmit.disabled = true;
   supStatus.textContent = 'Отправляем…';
   try {
-    // no-cors: ответ сервера Google недоступен браузеру, поэтому считаем отправку успешной после запроса.
+    // no-cors: ответ Google недоступен браузеру, поэтому успех фиксируем после запроса.
     await fetch(SUPPORT.action, { method:'POST', mode:'no-cors', body });
     supForm.reset();
     supStatus.className = 'form-status ok';
@@ -426,6 +457,7 @@ supForm.addEventListener('submit', async e => {
   }
 });
 
+// Окно Google Form
 const modal = $('#modal'), frame = $('#modal-frame');
 function openForm(url, title){
   frame.src = url + (url.includes('?') ? '&' : '?') + 'embedded=true';
@@ -441,7 +473,11 @@ document.addEventListener('click', e => {
   }
   if (e.target === modal || e.target.closest('#modal-close')) closeForm();
 });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeForm(); });
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (!modal.hidden) closeForm();
+  else if (!panel.hidden) setPanel(false);
+});
 </script>
 </body>
 </html>
