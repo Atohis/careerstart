@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>CareerStart</title>
-<meta name="description" content="Работа без опыта, которая влезает в расписание. Вакансии для студентов и заявки для работодателей.">
+<meta name="description" content="Работа без опыта, которая влезает в расписание. Вакансии для студентов и публикация вакансий для работодателей.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
@@ -82,11 +82,7 @@ nav a:hover{color:var(--hi)}
 .perk::before{content:"✦";font-size:14px;color:var(--accent-ink);opacity:.9}
 
 section.block{padding-block:72px;border-top:3px solid var(--ink)}
-.two{display:grid;gap:22px;grid-template-columns:1fr 1fr}
-@media (max-width:760px){.two{grid-template-columns:1fr}}
 .card{background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);padding:24px;display:grid;gap:12px;min-width:0}
-.card ul{margin:0;padding-left:20px;color:var(--muted)}
-.card li{margin-bottom:6px}
 
 .steps{display:grid;gap:18px;grid-template-columns:repeat(3,1fr);margin-top:30px}
 @media (max-width:860px){.steps{grid-template-columns:1fr}}
@@ -111,9 +107,15 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .vac .btn{margin-top:auto;width:100%}
 .empty{border:3px dashed var(--ink);border-radius:18px;padding:24px;color:var(--muted);text-align:center;margin-top:20px}
 
-.price{font:900 clamp(48px,7vw,80px)/1 Unbounded,sans-serif;letter-spacing:-.05em}
-.price small{display:block;font:700 16px Manrope,sans-serif;letter-spacing:0;color:var(--muted);margin-top:8px}
-.note{background:var(--hi);color:var(--hi-ink);border:2px solid var(--ink);border-radius:14px;padding:14px 16px;font-size:14px}
+/* тарифы */
+.plans{display:grid;gap:16px;grid-template-columns:repeat(4,1fr);margin-top:28px}
+@media (max-width:900px){.plans{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);padding:20px;display:grid;gap:6px;min-width:0}
+.plan .pl-m{font:700 14px Manrope,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.plan .pl-p{font:900 26px/1.1 Unbounded,sans-serif;letter-spacing:-.03em}
+.plan .pl-s{font:700 13px Manrope,sans-serif;color:var(--ink);background:var(--accent-2,var(--bg));border:2px solid var(--ink);border-radius:999px;padding:4px 10px;justify-self:start}
+.plan .pl-s.none{visibility:hidden}
 
 /* плавающая кнопка поддержки */
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--accent);color:var(--accent-ink);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;cursor:pointer;z-index:40;padding:0;transition:transform .12s ease,box-shadow .12s ease}
@@ -122,10 +124,11 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .fab svg{width:22px;height:22px}
 .panel{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 56px);width:min(340px,calc(100vw - 32px));background:var(--surface);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);z-index:41;padding:18px;display:grid;gap:14px}
 
-/* окна: вход, профиль, форма */
+/* окна */
 .modal{position:fixed;inset:0;background:rgba(4,32,44,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
 .modal[hidden]{display:none!important}
-.dlg{background:var(--surface);border:3px solid var(--ink);border-radius:22px;width:min(420px,100%);max-height:86vh;overflow:auto;box-shadow:var(--shadow);display:grid}
+.dlg{background:var(--surface);border:3px solid var(--ink);border-radius:22px;width:min(420px,100%);max-height:88vh;overflow:auto;box-shadow:var(--shadow);display:grid}
+.dlg.wide{width:min(560px,100%)}
 .sheet{background:var(--surface);border:3px solid var(--ink);border-radius:22px;width:min(640px,100%);height:min(86vh,760px);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow)}
 .sheet iframe{border:0;width:100%;flex:1;background:var(--surface)}
 .head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:3px solid var(--ink)}
@@ -137,13 +140,21 @@ section.block{padding-block:72px;border-top:3px solid var(--ink)}
 .tab.on{background:var(--hi);color:var(--hi-ink)}
 form.sup{display:grid;gap:14px}
 form.sup label{display:grid;gap:6px;font-weight:700;font-size:14px;min-width:0}
+form.sup label.chk{display:flex;gap:10px;align-items:center;font-weight:600}
+form.sup label.chk input{accent-color:var(--ink);width:18px;height:18px}
+.row2{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media (max-width:480px){.row2{grid-template-columns:1fr}}
 .field{font:500 16px Manrope,sans-serif;color:var(--ink);background:var(--bg);border:2px solid var(--ink);border-radius:12px;padding:10px 12px;width:100%;min-width:0}
+textarea.field{resize:vertical;min-height:90px}
 .field:focus{outline:3px solid var(--hi);outline-offset:1px}
 fieldset{border:0;padding:0;margin:0;display:grid;gap:8px;min-width:0}
 legend{font-weight:700;font-size:14px;padding:0;margin-bottom:6px}
+.plan-pick{display:grid;gap:8px}
+.plan-pick .chip{justify-content:space-between;border-radius:14px;padding:10px 14px}
 .form-status{font-size:14px;min-height:1.4em;margin:0}
 .form-status.ok{font-weight:700}
 .form-status.err{background:var(--hi);color:var(--hi-ink);border-radius:10px;padding:8px 12px}
+.summary{background:var(--bg);border:2px solid var(--ink);border-radius:14px;padding:14px;font-size:15px}
 
 details{background:var(--surface);border:3px solid var(--ink);border-radius:18px;padding:18px 22px;box-shadow:4px 4px 0 var(--ink)}
 details + details{margin-top:14px}
@@ -192,7 +203,7 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
     <aside class="sticker" aria-label="Коротко о сервисе">
       <div class="row"><div class="n">1</div><div><b>Условия до отклика</b><span>Оплата, график и обязанности видны сразу</span></div></div>
       <div class="row"><div class="n">2</div><div><b>Подбор по расписанию</b><span>Фильтр по свободным дням и часам</span></div></div>
-      <div class="row"><div class="n">3</div><div><b>Команда проверяет вакансии</b><span>В каталоге только проверенные предложения</span></div></div>
+      <div class="row"><div class="n">3</div><div><b>Вакансия сразу в каталоге</b><span>После оплаты она появляется на сайте</span></div></div>
     </aside>
   </div>
 
@@ -200,7 +211,7 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
     <span class="perk">Без опыта</span>
     <span class="perk">По расписанию</span>
     <span class="perk">Оплата до отклика</span>
-    <span class="perk">Проверенные вакансии</span>
+    <span class="perk">Быстрая публикация</span>
   </div>
 
   <section class="block" id="how">
@@ -208,15 +219,15 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
     <h2>Три шага. Без лишней возни</h2>
     <div class="steps">
       <div class="step"><div class="num">01</div><h3>Выбираете</h3><p>Фильтруете по дням, оплате и опыту. Видите условия до отклика.</p></div>
-      <div class="step"><div class="num">02</div><h3>Откликаетесь</h3><p>Заполняете короткую форму. Отклик уходит команде, она свяжется с вами.</p></div>
-      <div class="step"><div class="num">03</div><h3>Выходите на работу</h3><p>Команда соединяет вас с работодателем. Дальше вы договариваетесь напрямую.</p></div>
+      <div class="step"><div class="num">02</div><h3>Откликаетесь</h3><p>Заполняете короткую форму. Отклик уходит работодателю и команде.</p></div>
+      <div class="step"><div class="num">03</div><h3>Выходите на работу</h3><p>Работодатель связывается с вами. Дальше вы договариваетесь напрямую.</p></div>
     </div>
   </section>
 
   <section class="block" id="vacancies">
     <span class="kicker">Вакансии</span>
-    <h2>Примеры вакансий</h2>
-    <p class="muted">Это примеры, чтобы показать формат карточек. Реальные предложения появятся после проверки команды.</p>
+    <h2>Вакансии</h2>
+    <p class="muted" id="cat-note">Загружаем вакансии…</p>
 
     <div class="filters" aria-label="Фильтры">
       <label class="chip"><input type="checkbox" id="f-noexp"> Без опыта</label>
@@ -238,25 +249,15 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
 
   <section class="block" id="employers">
     <span class="kicker">Работодателям</span>
-    <div class="two" style="align-items:center">
-      <div>
-        <h2>Нужны стажёры? Берите тех, кто уже учится</h2>
-        <p class="muted">Оставьте заявку: команда проверит условия, опубликует вакансию и передаст вам отклики студентов.</p>
-        <div class="cta">
-          <button class="btn" id="btn-employer" type="button" data-form="employer" disabled>Оставить заявку <span class="arrow">→</span></button>
-        </div>
-        <p class="small" id="emp-note" style="margin-top:12px"></p>
-      </div>
-      <div class="card">
-        <div class="price">15 000 ₸<small>за размещение одной вакансии</small></div>
-        <ul style="margin:0;padding-left:20px;color:var(--muted)">
-          <li>Публикация после проверки условий</li>
-          <li>Отклики студентов с курсом и свободным временем</li>
-          <li>Вакансия остаётся в каталоге, пока актуальна</li>
-        </ul>
-        <div class="note">Оплата пока тестовая: деньги не списываются. Ссылку на оплату добавим после подключения провайдера.</div>
-      </div>
+    <h2>Создайте вакансию за минуту</h2>
+    <p class="muted">Заполните анкету, выберите срок и оплатите. Вакансия появится в каталоге сразу после оплаты.</p>
+
+    <div class="plans" id="plans"></div>
+
+    <div class="cta">
+      <button class="btn" id="btn-create" type="button">Создать вакансию <span class="arrow">→</span></button>
     </div>
+    <p class="small" style="margin-top:14px">Оплата пока тестовая: деньги не списываются. Настоящую оплату подключим позже.</p>
   </section>
 
   <section class="block" id="faq">
@@ -268,21 +269,21 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
     </details>
     <details>
       <summary>Кто проверяет вакансии?</summary>
-      <p>Команда CareerStart. Мы смотрим условия, оплату и график, прежде чем опубликовать вакансию.</p>
+      <p>Вакансию публикует работодатель через анкету. Команда CareerStart может попросить уточнить условия, если что-то выглядит неясно.</p>
     </details>
     <details>
-      <summary>Сколько ждать ответа?</summary>
-      <p>Команда отвечает на отклики, когда работодатель подтвердит вакансию. Точного срока пока нет, мы его ещё проверяем.</p>
+      <summary>Что будет, когда срок закончится?</summary>
+      <p>Вакансия пропадёт из каталога. Продлить можно в любой момент, выбрав новый срок.</p>
     </details>
     <details>
       <summary>Что с моими данными?</summary>
-      <p>Заявки видит только команда. Перед отправкой формы нужно согласие на обработку персональных данных.</p>
+      <p>Данные аккаунта и анкет хранятся в базе и видны только вам и команде. Перед отправкой нужно согласие на обработку персональных данных.</p>
     </details>
   </section>
 
   <footer>
-    <span>© CareerStart · Тестовая версия · вакансии-примеры помечены тегом «Пример»</span>
-    <span>Данные заявок хранятся только для обработки и не передаются третьим лицам.</span>
+    <span>© CareerStart · Тестовая версия</span>
+    <span>Данные не передаются третьим лицам.</span>
   </footer>
 </div>
 
@@ -362,55 +363,127 @@ footer{padding-block:40px 110px;border-top:3px solid var(--ink);display:flex;jus
   </div>
 </div>
 
-<!-- Google Form (отклик и заявка работодателя) -->
-<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div class="sheet">
+<!-- Анкета вакансии и оплата -->
+<div class="modal" id="vac-modal" hidden role="dialog" aria-modal="true" aria-labelledby="vac-title">
+  <div class="dlg wide">
     <div class="head">
-      <h3 id="modal-title"></h3>
-      <button class="x" data-close="modal" type="button" aria-label="Закрыть">×</button>
+      <h3 id="vac-title">Анкета вакансии</h3>
+      <button class="x" data-close="vac-modal" type="button" aria-label="Закрыть">×</button>
     </div>
-    <iframe id="modal-frame" title="Форма заявки"></iframe>
+    <div class="body">
+      <form class="sup" id="vac-form" novalidate>
+        <label>Компания
+          <input class="field" name="company" type="text" required maxlength="100">
+        </label>
+        <label>Должность
+          <input class="field" name="title" type="text" required maxlength="100">
+        </label>
+        <div class="row2">
+          <label>Оплата, ₸
+            <input class="field" name="pay_amount" type="number" min="1" max="10000000" required>
+          </label>
+          <label>Оплата за
+            <select class="field" name="pay_unit">
+              <option value="смену">смену</option>
+              <option value="час">час</option>
+              <option value="месяц">месяц</option>
+            </select>
+          </label>
+        </div>
+        <label>Формат
+          <select class="field" name="format">
+            <option>На месте</option>
+            <option>Удалённо</option>
+            <option>Гибрид</option>
+          </select>
+        </label>
+        <label>Часы работы
+          <input class="field" name="hours" type="text" required maxlength="60" placeholder="например, 14:00–18:00">
+        </label>
+        <fieldset>
+          <legend>Дни работы</legend>
+          <div class="days" id="v-days"></div>
+        </fieldset>
+        <label class="chk"><input type="checkbox" name="no_experience"> <span>Подходит без опыта</span></label>
+        <label>Обязанности
+          <textarea class="field" name="duties" required maxlength="800"></textarea>
+        </label>
+        <label>Требования (необязательно)
+          <textarea class="field" name="requirements" maxlength="500"></textarea>
+        </label>
+        <fieldset>
+          <legend>Срок размещения</legend>
+          <div class="plan-pick" id="v-plans"></div>
+        </fieldset>
+        <button class="btn" type="submit">Перейти к оплате <span class="arrow">→</span></button>
+        <p class="form-status" id="vac-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div id="vac-pay" hidden>
+        <div class="summary" id="vac-summary"></div>
+        <button class="btn" id="vac-pay-btn" type="button">Оплатить (тест, без списания)</button>
+        <button class="btn alt" id="vac-back" type="button">Назад к анкете</button>
+        <p class="form-status" id="vac-pay-status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
 <script>
-// Ссылки на формы Google Forms (отклик студента и заявка работодателя).
+// Формы Google Forms: отклик студента (заявки на вакансии).
 const FORM_RESPONSE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmupMJpfznNtPaYNRIJoCjCWb3OYmHWCFMHjJbkE9ULfgBRg/viewform';
-const FORM_EMPLOYER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeBd4JfOWQN1AluqxzhGaogxHVpqty1GWZ44X4qJ-5pJTDO3Q/viewform';
 
-// Аккаунты (Supabase). Публичный ключ можно показывать: данные защищены правилами доступа в базе.
+// Аккаунты и база (Supabase). Публичный ключ можно показывать: доступ ограничен правилами в базе.
 const SB_URL = 'https://xhfxhfoowzvirkqshcrr.supabase.co';
 const SB_KEY = 'sb_publishable_kiPYIu7_uIBpa8sHOlZuZQ_6nSneMgy';
 const sb = (window.supabase && window.supabase.createClient) ? window.supabase.createClient(SB_URL, SB_KEY) : null;
 let currentUser = null;
 
-// Вакансии-примеры. Команда заменяет их на проверенные предложения.
-const VACANCIES = [
-  { id:'v1', title:'Помощник в отдел учёта', company:'Пример: торговая компания', payAmount:3000, payText:'3 000 ₸ за смену', days:['Вт','Чт'], hours:'14:00–18:00', format:'На месте', noExperience:true, duties:'Ведение таблиц и сверка накладных. Обучение на месте.' },
-  { id:'v2', title:'Стажёр SMM', company:'Пример: digital-студия', payAmount:2500, payText:'2 500 ₸ за публикацию', days:['Пн','Ср','Пт'], hours:'гибкий график', format:'Удалённо', noExperience:true, duties:'Подготовка постов и сторис для соцсетей.' },
-  { id:'v3', title:'Оператор склада', company:'Пример: магазин', payAmount:5500, payText:'5 500 ₸ за смену', days:['Сб','Вс'], hours:'09:00–15:00', format:'На месте', noExperience:false, duties:'Приёмка, маркировка и выкладка товара.' },
-  { id:'v4', title:'Кассир-консультант', company:'Пример: сеть магазинов', payAmount:4000, payText:'4 000 ₸ за смену', days:['Пт','Сб'], hours:'18:00–22:00', format:'На месте', noExperience:true, duties:'Работа на кассе и консультации покупателей.' },
-  { id:'v5', title:'Администратор в кафе', company:'Пример: кафе', payAmount:3500, payText:'3 500 ₸ за смену', days:['Вт','Ср','Чт'], hours:'12:00–17:00', format:'На месте', noExperience:true, duties:'Приём гостей и работа с кассой.' },
-  { id:'v6', title:'Ассистент в офис', company:'Пример: IT-компания', payAmount:2800, payText:'2 800 ₸ за смену', days:['Пн','Ср'], hours:'10:00–14:00', format:'Гибрид', noExperience:false, duties:'Работа с входящими заявками и почтой.' }
+// Тарифы размещения. Экономия считается от 15 000 ₸ в месяц.
+const BASE_PRICE = 15000;
+const PLANS = [
+  { months: 1,  price: 15000,  label: '1 месяц' },
+  { months: 3,  price: 40000,  label: '3 месяца' },
+  { months: 6,  price: 75000,  label: '6 месяцев' },
+  { months: 12, price: 130000, label: '12 месяцев' }
+];
+PLANS.forEach(p => p.save = BASE_PRICE * p.months - p.price);
+
+// Примеры показываются, пока в базе нет настоящих вакансий.
+const EXAMPLES = [
+  { id:'e1', title:'Помощник в отдел учёта', company:'Пример: торговая компания', payAmount:3000, payText:'3 000 ₸ за смену', days:['Вт','Чт'], hours:'14:00–18:00', format:'На месте', noExperience:true, duties:'Ведение таблиц и сверка накладных. Обучение на месте.', example:true },
+  { id:'e2', title:'Стажёр SMM', company:'Пример: digital-студия', payAmount:2500, payText:'2 500 ₸ за публикацию', days:['Пн','Ср','Пт'], hours:'гибкий график', format:'Удалённо', noExperience:true, duties:'Подготовка постов и сторис для соцсетей.', example:true },
+  { id:'e3', title:'Кассир-консультант', company:'Пример: сеть магазинов', payAmount:4000, payText:'4 000 ₸ за смену', days:['Пт','Сб'], hours:'18:00–22:00', format:'На месте', noExperience:true, duties:'Работа на кассе и консультации покупателей.', example:true }
 ];
 
+let ITEMS = [];
 const DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = n => Number(n).toLocaleString('ru-RU');
 
-// Фильтры и каталог
 document.getElementById('f-days').innerHTML = DAYS.map(d => `<label class="chip"><input type="checkbox" name="fday" value="${d}"> ${d}</label>`).join('');
 document.getElementById('p-days').innerHTML = DAYS.map(d => `<label class="chip"><input type="checkbox" name="pday" value="${d}"> ${d}</label>`).join('');
+document.getElementById('v-days').innerHTML = DAYS.map(d => `<label class="chip"><input type="checkbox" name="vday" value="${d}"> ${d}</label>`).join('');
+document.getElementById('plans').innerHTML = PLANS.map(p => `
+  <div class="plan">
+    <div class="pl-m">${p.label}</div>
+    <div class="pl-p">${fmt(p.price)} ₸</div>
+    <div class="pl-s${p.save ? '' : ' none'}">${p.save ? 'Экономия ' + fmt(p.save) + ' ₸' : 'Без скидки'}</div>
+  </div>`).join('');
+document.getElementById('v-plans').innerHTML = PLANS.map((p, i) => `
+  <label class="chip"><span><input type="radio" name="plan" value="${i}" ${i === 0 ? 'checked' : ''}> ${p.label}</span><b>${fmt(p.price)} ₸${p.save ? ' · экономия ' + fmt(p.save) + ' ₸' : ''}</b></label>`).join('');
 
+// Каталог
 function renderCatalog(){
   const noExp = $('#f-noexp').checked;
   const days = [...document.querySelectorAll('input[name="fday"]:checked')].map(i => i.value);
   const minPay = Number($('#f-pay').value || 0);
-  const list = VACANCIES.filter(v =>
+  const list = ITEMS.filter(v =>
     (!noExp || v.noExperience) &&
     (days.length === 0 || v.days.some(d => days.includes(d))) &&
-    v.payAmount >= minPay);
+    (v.payAmount || 0) >= minPay);
   const box = $('#catalog'), empty = $('#catalog-empty');
   if (list.length === 0){
     box.innerHTML = '';
@@ -422,7 +495,7 @@ function renderCatalog(){
   box.innerHTML = list.map(v => `
     <article class="vac">
       <div class="tags">
-        <span class="tag ex">Пример</span>
+        ${v.example ? '<span class="tag ex">Пример</span>' : '<span class="tag">Новая</span>'}
         ${v.noExperience ? '<span class="tag">Без опыта</span>' : ''}
         <span class="tag">${esc(v.format)}</span>
       </div>
@@ -438,11 +511,26 @@ function renderCatalog(){
 }
 ['#f-noexp','#f-pay'].forEach(s => $(s).addEventListener('change', renderCatalog));
 document.querySelectorAll('input[name="fday"]').forEach(i => i.addEventListener('change', renderCatalog));
-renderCatalog();
 
-const emp = $('#btn-employer');
-if (!FORM_EMPLOYER_URL){ emp.textContent = 'Заявка скоро'; $('#emp-note').textContent = 'Форма заявки откроется после запуска.'; }
-else { emp.disabled = false; }
+async function loadCatalog(){
+  let rows = [];
+  if (sb){
+    const { data, error } = await sb.from('vacancies')
+      .select('*')
+      .gt('paid_until', new Date().toISOString())
+      .order('created_at', { ascending: false });
+    if (!error && data) rows = data.map(r => ({
+      id: r.id, title: r.title, company: r.company, payAmount: r.pay_amount, payText: r.pay_text,
+      days: r.days || [], hours: r.hours, format: r.format, noExperience: r.no_experience,
+      duties: r.duties, example: false
+    }));
+  }
+  ITEMS = rows.length ? rows : EXAMPLES;
+  $('#cat-note').textContent = rows.length
+    ? 'Вакансии, которые работодатели опубликовали на сайте.'
+    : 'Пока опубликованных вакансий нет. Ниже примеры, чтобы показать формат.';
+  renderCatalog();
+}
 
 // Тема текста
 const themeBtn = $('#theme-btn');
@@ -480,10 +568,10 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
-  ['modal','profile-modal','auth-modal','support-panel'].forEach(id => { if (!$('#' + id).hidden) hideModal(id); });
+  ['modal','vac-modal','profile-modal','auth-modal','support-panel'].forEach(id => { if (!$('#' + id).hidden) hideModal(id); });
 });
 
-// Google Form
+// Отклик студента (Google Form)
 function openForm(url, title){
   $('#modal-frame').src = url + (url.includes('?') ? '&' : '?') + 'embedded=true';
   $('#modal-title').textContent = title;
@@ -492,7 +580,6 @@ function openForm(url, title){
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-form]');
   if (!b || b.disabled) return;
-  if (b.dataset.form === 'employer' && FORM_EMPLOYER_URL) openForm(FORM_EMPLOYER_URL, 'Заявка работодателя');
   if (b.dataset.form === 'response' && FORM_RESPONSE_URL) openForm(FORM_RESPONSE_URL, 'Отклик на вакансию');
 });
 
@@ -517,14 +604,13 @@ function setAuthMode(mode){
   $('#auth-form [name="password"]').autocomplete = mode === 'login' ? 'current-password' : 'new-password';
 }
 document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => setAuthMode(t.dataset.mode)));
-
-authBtn.addEventListener('click', () => {
-  if (currentUser){ openProfile(); return; }
+function openAuth(){
   $('#auth-form').reset();
   setStatus($('#auth-status'), '');
   setAuthMode('login');
   showModal('auth-modal');
-});
+}
+authBtn.addEventListener('click', () => { if (currentUser) openProfile(); else openAuth(); });
 
 $('#auth-form').addEventListener('submit', async e => {
   e.preventDefault();
@@ -594,6 +680,78 @@ $('#logout-btn').addEventListener('click', async () => {
   hideModal('profile-modal');
 });
 
+// Анкета вакансии и оплата
+let pending = null;
+$('#btn-create').addEventListener('click', () => {
+  if (!sb){ alert('Публикация пока недоступна'); return; }
+  if (!currentUser){ openAuth(); return; }
+  $('#vac-form').reset();
+  document.querySelectorAll('input[name="plan"]').forEach(i => i.checked = i.value === '0');
+  $('#vac-form').hidden = false;
+  $('#vac-pay').hidden = true;
+  setStatus($('#vac-status'), '');
+  setStatus($('#vac-pay-status'), '');
+  showModal('vac-modal');
+});
+
+$('#vac-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const st = $('#vac-status');
+  const f = new FormData(e.target);
+  const days = f.getAll('vday');
+  if (!e.target.checkValidity()){ e.target.reportValidity(); setStatus(st, 'Заполните обязательные поля.'); return; }
+  if (days.length === 0){ setStatus(st, 'Отметьте хотя бы один день работы.'); return; }
+  const plan = PLANS[Number(f.get('plan') || 0)];
+  const amount = Number(f.get('pay_amount'));
+  const unit = String(f.get('pay_unit'));
+  pending = {
+    company: String(f.get('company') || '').trim(),
+    title: String(f.get('title') || '').trim(),
+    pay_amount: amount,
+    pay_unit: unit,
+    pay_text: `${fmt(amount)} ₸ за ${unit}`,
+    format: String(f.get('format')),
+    hours: String(f.get('hours') || '').trim(),
+    days,
+    no_experience: f.get('no_experience') === 'on',
+    duties: String(f.get('duties') || '').trim(),
+    requirements: String(f.get('requirements') || '').trim() || null,
+    plan_months: plan.months,
+    price: plan.price,
+    plan
+  };
+  $('#vac-summary').innerHTML = `
+    <b>${esc(pending.title)}</b>, ${esc(pending.company)}<br>
+    Срок: ${plan.label}<br>
+    Стоимость: <b>${fmt(plan.price)} ₸</b>${plan.save ? ` (экономия ${fmt(plan.save)} ₸)` : ''}`;
+  setStatus($('#vac-pay-status'), '');
+  $('#vac-form').hidden = true;
+  $('#vac-pay').hidden = false;
+});
+
+$('#vac-back').addEventListener('click', () => {
+  $('#vac-pay').hidden = true;
+  $('#vac-form').hidden = false;
+});
+
+$('#vac-pay-btn').addEventListener('click', async () => {
+  if (!pending) return;
+  const btn = $('#vac-pay-btn'), st = $('#vac-pay-status');
+  btn.disabled = true;
+  setStatus(st, 'Публикуем вакансию…', true);
+  const paidUntil = new Date();
+  paidUntil.setMonth(paidUntil.getMonth() + pending.plan_months);
+  const { plan, price, ...row } = pending;
+  row.paid_until = paidUntil.toISOString();
+  const { error } = await sb.from('vacancies').insert(row);
+  btn.disabled = false;
+  if (error){ setStatus(st, errText(error)); return; }
+  setStatus(st, 'Оплачено. Вакансия опубликована.', true);
+  pending = null;
+  await loadCatalog();
+  setTimeout(() => { hideModal('vac-modal'); document.querySelector('#vacancies').scrollIntoView(); }, 900);
+});
+
 function renderAuthBtn(){
   authBtn.disabled = false;
   authBtn.textContent = currentUser ? 'Профиль' : 'Войти';
@@ -607,6 +765,8 @@ if (sb){
   authBtn.textContent = 'Вход скоро';
   authBtn.disabled = true;
 }
+
+loadCatalog();
 </script>
 </body>
 </html>
